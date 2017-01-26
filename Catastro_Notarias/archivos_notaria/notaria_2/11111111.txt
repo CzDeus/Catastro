@@ -1,0 +1,13 @@
+*Id Catalogo Tipo Manifestacion
+ - Id Tipo Manifestacion            -Nombre manifestacion
+	   1                          Rectificacion Urbano
+           2                          Traslacion Urbano
+	   3                          Subdivision Urbano
+           4                          Fusion Urbano
+
+           5                          Rectificacion Rural
+           6                          Traslacion Rural
+           7                          Subdivision Rural
+           8                          Fusion
+
+           9                          Lotificacion

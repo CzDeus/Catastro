@@ -1,0 +1,158 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="Site" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Nombre del Proyecto | Nombre del Sistema</title>
+
+    <link href="/content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/content/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- Toastr style -->
+    <link href="/content/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <!-- Gritter -->
+    <link href="/content/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <link href="/content/css/animate.css" rel="stylesheet">
+    <link href="/content/css/style.css" rel="stylesheet">
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
+        <div id="wrapper">
+            <nav class="navbar-default navbar-static-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav metismenu" id="side-menu">
+                        <li class="nav-header">
+                            <div class="dropdown profile-element">
+                                <span>
+                                    <img alt="image" src="/content/images/html_logo_grande.png" />
+                                </span>
+                            </div>
+                            <div class="logo-element">
+                                <span>
+                                    <img alt="image" src="/content/images/html_logo_pequeño.png" />
+                                </span>
+                            </div>
+                        </li>
+
+                        <!--Aqui-->
+                        <li id="liNav" runat="server"></li>
+
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="page-wrapper" class="gray-bg dashbard-1">
+
+                <div class="row border-bottom">
+                    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #2f4050">
+                        <div class="navbar-header">
+                            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary" href="#"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-top-links navbar-left">
+                            <h2>Administracion Catastro</h2>
+                        </ul>
+
+                        <ul class="nav navbar-top-links navbar-right">
+                            <li id="nombreUsuario" runat="server">
+                                <span class="m-r-sm text-muted welcome-message">Nombre del Usuario</span>
+                            </li>
+                            <li>
+                                <a href="/Logout.aspx">
+                                    <i class="fa fa-sign-out"></i>Salir
+                                </a>
+                            </li>
+                            <li id="logout" runat="server">
+                                <a class="right-sidebar-toggle">
+                                    <i class="fa fa-tasks"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </nav>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="wrapper wrapper-content">
+                            <div class="row">
+                                <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+                                <section class="content-wrapper main-content clear-fix">
+                                    <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mainly scripts -->
+        <script src="/content/js/jquery-2.1.1.js"></script>
+        <script src="/content/js/bootstrap.min.js"></script>
+        <script src="/content/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="/content/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+        <!-- Flot -->
+        <script src="/content/js/plugins/flot/jquery.flot.js"></script>
+        <script src="/content/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+        <script src="/content/js/plugins/flot/jquery.flot.spline.js"></script>
+        <script src="/content/js/plugins/flot/jquery.flot.resize.js"></script>
+        <script src="/content/js/plugins/flot/jquery.flot.pie.js"></script>
+
+        <!-- Peity -->
+        <script src="/content/js/plugins/peity/jquery.peity.min.js"></script>
+        <script src="/content/js/demo/peity-demo.js"></script>
+
+        <!-- Custom and plugin javascript -->
+        <script src="/content/js/inspinia.js"></script>
+        <script src="/content/js/plugins/pace/pace.min.js"></script>
+
+        <!-- jQuery UI -->
+        <script src="/content/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+        <!-- GITTER -->
+        <script src="/content/js/plugins/gritter/jquery.gritter.min.js"></script>
+
+        <!-- Sparkline -->
+        <script src="/content/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+        <!-- Sparkline demo data  -->
+        <script src="/content/js/demo/sparkline-demo.js"></script>
+
+        <!-- ChartJS-->
+        <script src="/content/js/plugins/chartJs/Chart.min.js"></script>
+
+        <!-- Toastr -->
+        <script src="/content/js/plugins/toastr/toastr.min.js"></script>
+
+
+        <%--        <script>
+            $(document).ready(function () {
+                setTimeout(function () {
+                    toastr.options = {
+                        closeButton: true,
+                        progressBar: true,
+                        showMethod: 'slideDown',
+                        timeOut: 4000
+                    };
+                    toastr.success('Usuario', 'Welcome to InSist');
+
+                }, 1300);
+            });
+        </script>--%>
+
+    <asp:ContentPlaceHolder runat="server" ID="cphScript"></asp:ContentPlaceHolder>
+
+    </form>
+</body>
+</html>

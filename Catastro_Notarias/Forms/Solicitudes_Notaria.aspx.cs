@@ -19,7 +19,7 @@ public partial class Forms_Solicitudes_Notaria : System.Web.UI.Page
         //{
         //    Response.Redirect("/Login.aspx", true);
         //}
-
+        Estatus_HiddenField.Value = "1";
         if (!IsPostBack)
         {
             Id_Notaria_HiddenField.Value = Session["sist_Id_Notaria"].ToString();
@@ -50,31 +50,31 @@ public partial class Forms_Solicitudes_Notaria : System.Web.UI.Page
             switch (tipo_tramite)
             {
                 case 1:
-                    Response.Redirect("Manifestacion.aspx?t=ru"); //2
+                    Response.Redirect("Manifestacion.aspx?t=ru&e="+ Estatus_HiddenField.Value); //2
                     break;
                 case 5:
-                    Response.Redirect("Manifestacion.aspx?t=rr"); //2
+                    Response.Redirect("Manifestacion.aspx?t=rr&e=" + Estatus_HiddenField.Value); //2
                     break;
                 case 2:
-                    Response.Redirect("Manifestacion.aspx?t=tu"); //2
+                    Response.Redirect("Manifestacion.aspx?t=tu&e=" + Estatus_HiddenField.Value); //2
                     break;
                 case 6:
-                    Response.Redirect("Manifestacion.aspx?t=tr"); //2
+                    Response.Redirect("Manifestacion.aspx?t=tr&e=" + Estatus_HiddenField.Value); //2
                     break;
                 case 3:
-                    Response.Redirect("Manifestacion.aspx?t=di&ti=0"); //1
+                    Response.Redirect("Manifestacion.aspx?t=di&ti=0&e=" + Estatus_HiddenField.Value); //1
                     break;
                 case 7:
-                    Response.Redirect("Manifestacion.aspx?t=di&ti=1"); //1
+                    Response.Redirect("Manifestacion.aspx?t=di&ti=1&e=" + Estatus_HiddenField.Value); //1
                     break;
                 case 4:
-                    Response.Redirect("Manifestacion.aspx?t=fu&ti=0"); //0
+                    Response.Redirect("Manifestacion.aspx?t=fu&ti=0&e=" + Estatus_HiddenField.Value); //0
                     break;
                 case 8:
-                    Response.Redirect("Manifestacion.aspx?t=fu&ti=1"); //0
+                    Response.Redirect("Manifestacion.aspx?t=fu&ti=1&e=" + Estatus_HiddenField.Value); //0
                     break;
                 case 9:
-                    Response.Redirect("Manifestacion.aspx?t=l");
+                    Response.Redirect("Manifestacion.aspx?t=l&e=" + Estatus_HiddenField.Value);
                     break;
             }
         }
@@ -101,14 +101,27 @@ public partial class Forms_Solicitudes_Notaria : System.Web.UI.Page
             {
                 Estatus_HiddenField.Value = "2";
 
-            }else if(Estado_Registro_Verificador.SelectedValue == "Validados")
+
+            }
+            else if (Estado_Registro_Verificador.SelectedValue == "Validados")
             {
                 Estatus_HiddenField.Value = "3";
 
-            }else if(Estado_Registro_Verificador.SelectedValue == "Todos")
+            }
+            else if (Estado_Registro_Verificador.SelectedValue == "Todos")
             {
 
             }
+
+            if (Estatus_HiddenField.Value != "2")
+            {
+                Tramites_GridView.Columns[5].Visible = true;
+            }
+            else
+            {
+                Tramites_GridView.Columns[5].Visible = false;
+            }
+
             Tramites_GridView.DataBind();
         }
     }

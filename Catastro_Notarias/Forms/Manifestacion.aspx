@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <asp:Label ID="Label61" runat="server" Text="C.U.R.P:" Font-Bold="True"></asp:Label>
-                                    <asp:TextBox ID="Curp_Subdivision_TextBox" runat="server" class="form-control" Style="text-transform:uppercase"></asp:TextBox>
+                                    <asp:TextBox ID="Curp_Subdivision_TextBox" runat="server" class="form-control" Style="text-transform: uppercase"></asp:TextBox>
                                 </div>
                             </div>
 
@@ -57,11 +57,11 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <asp:Label ID="Label49" runat="server" Text="C.U.R.P:" Font-Bold="True"></asp:Label>
-                                    <asp:TextBox ID="Curp_Vendedor_TextBox" runat="server" class="form-control" Style="text-transform:uppercase"></asp:TextBox>
+                                    <asp:TextBox ID="Curp_Vendedor_TextBox" runat="server" class="form-control" Style="text-transform: uppercase"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-6">
                                     <asp:Label ID="Label50" runat="server" Text="C.U.R.P:" Font-Bold="True"></asp:Label>
-                                    <asp:TextBox ID="Curp_Comprador_TextBox" runat="server" class="form-control" Style="text-transform:uppercase"></asp:TextBox>
+                                    <asp:TextBox ID="Curp_Comprador_TextBox" runat="server" class="form-control" Style="text-transform: uppercase"></asp:TextBox>
                                 </div>
                             </div>
 
@@ -144,22 +144,22 @@
                                     <div id="collapseTen" class="panel-collapse collapse" aria-expanded="false">
                                         <div class="panel-body" style="background: #f7f7f7">
                                             <div class="row" style="text-align: center">
-                                                <div class="col-lg-3">
+                                                <div class="col-lg-4">
                                                     <asp:Label ID="Label39" runat="server" Text="Nombre del predio:"></asp:Label>
                                                     <asp:TextBox ID="Nombre_Predio_Rural_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
                                                 </div>
-                                                <div class="col-lg-3">
+                                                <div class="col-lg-4">
                                                     <asp:Label ID="Label40" runat="server" Text="Poblacion mas cercana:"></asp:Label>
                                                     <asp:TextBox ID="Poblacion_Mas_Cercana_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
                                                 </div>
-                                                <div class="col-lg-3">
+                                                <div class="col-lg-4">
                                                     <asp:Label ID="Label41" runat="server" Text="Municipio:"></asp:Label>
                                                     <asp:TextBox ID="Municipio_Predio_Rural_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
                                                 </div>
-                                                <div class="col-lg-3">
+                                                <%--                                                <div class="col-lg-3">
                                                     <asp:Label ID="Label52" runat="server" Text="Valor catastral:"></asp:Label>
                                                     <asp:TextBox ID="Valor_Catastral_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
-                                                </div>
+                                                </div>--%>
                                             </div>
                                         </div>
                                     </div>
@@ -212,18 +212,20 @@
                                     <div id="collapseFour" class="panel-collapse collapse" aria-expanded="false">
                                         <div class="panel-body" style="background: #f7f7f7">
                                             <div class="row" style="text-align: center">
-                                                <div class="col-lg-8">
-                                                    <asp:Label ID="Label18" runat="server" Text="Nombre completo o razon social:"></asp:Label>
-                                                    <asp:TextBox ID="Nombre_Razon_Social_Transmite_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <asp:Label ID="Label19" runat="server" Text="Porcentaje:"></asp:Label>
-                                                    <asp:TextBox ID="Porcentaje_Transmite_TextBox" runat="server" CssClass="form-control"
-                                                        onkeypress="if(event.keyCode<48 || event.keyCode>57)event.returnValue=false;"></asp:TextBox>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <br />
-                                                    <asp:Button ID="Agregar_Propietario_Trasnmite_Button" runat="server" Text="Agregar propietario" CssClass="btn btn-primary" CommandArgument="Transmite" OnCommand="Agregar_Propietario_Button_Command" />
+                                                <div id="Datos_Quien_Trasnmite" runat="server">
+                                                    <div class="col-lg-8">
+                                                        <asp:Label ID="Label18" runat="server" Text="Nombre completo o razon social:"></asp:Label>
+                                                        <asp:TextBox ID="Nombre_Razon_Social_Transmite_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <asp:Label ID="Label19" runat="server" Text="Porcentaje:"></asp:Label>
+                                                        <asp:TextBox ID="Porcentaje_Transmite_TextBox" runat="server" CssClass="form-control"
+                                                            onkeypress="if(event.keyCode<48 || event.keyCode>57)event.returnValue=false;"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <br />
+                                                        <asp:Button ID="Agregar_Propietario_Trasnmite_Button" runat="server" Text="Agregar propietario" CssClass="btn btn-primary" CommandArgument="Transmite" OnCommand="Agregar_Propietario_Button_Command" />
+                                                    </div>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <br />
@@ -268,18 +270,20 @@
                                     <div id="collapseFive" class="panel-collapse collapse" aria-expanded="false">
                                         <div class="panel-body" style="background: #f7f7f7">
                                             <div class="row" style="text-align: center">
-                                                <div class="col-lg-8">
-                                                    <asp:Label ID="Label21" runat="server" Text="Nombre completo o razon social:"></asp:Label>
-                                                    <asp:TextBox ID="Nombre_Razon_Social_Adquiere_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <asp:Label ID="Label22" runat="server" Text="Porcentaje:"></asp:Label>
-                                                    <asp:TextBox ID="Porcentaje_Adquiere_TextBox" runat="server" CssClass="form-control"
-                                                        onkeypress="if(event.keyCode<48 || event.keyCode>57)event.returnValue=false;"></asp:TextBox>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <br />
-                                                    <asp:Button ID="Agregar_Propietario_Adquiere_Button" runat="server" Text="Agregar propietario" CssClass="btn btn-primary" CommandArgument="Adquiere" OnCommand="Agregar_Propietario_Button_Command" />
+                                                <div id="Datos_Quien_Adquiere" runat="server">
+                                                    <div class="col-lg-8">
+                                                        <asp:Label ID="Label21" runat="server" Text="Nombre completo o razon social:"></asp:Label>
+                                                        <asp:TextBox ID="Nombre_Razon_Social_Adquiere_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <asp:Label ID="Label22" runat="server" Text="Porcentaje:"></asp:Label>
+                                                        <asp:TextBox ID="Porcentaje_Adquiere_TextBox" runat="server" CssClass="form-control"
+                                                            onkeypress="if(event.keyCode<48 || event.keyCode>57)event.returnValue=false;"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <br />
+                                                        <asp:Button ID="Agregar_Propietario_Adquiere_Button" runat="server" Text="Agregar propietario" CssClass="btn btn-primary" CommandArgument="Adquiere" OnCommand="Agregar_Propietario_Button_Command" />
+                                                    </div>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <br />
@@ -394,22 +398,24 @@
                                     <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
                                         <div class="panel-body" style="background: #f7f7f7">
                                             <div class="row" style="text-align: center">
-                                                <div class="col-lg-4">
-                                                    <asp:Label ID="Label15" runat="server" Text="Pto. Cardinal:"></asp:Label>
-                                                    <asp:TextBox ID="Punto_Cardinal_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <asp:Label ID="Label16" runat="server" Text="Distancia en Mts:"></asp:Label>
-                                                    <asp:TextBox ID="Distancia_Metros_TextBox" runat="server" CssClass="form-control"
-                                                        onkeypress="if(event.keyCode<48 || event.keyCode>57)event.returnValue=false;"></asp:TextBox>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <asp:Label ID="Label17" runat="server" Text="Colindancias:"></asp:Label>
-                                                    <asp:TextBox ID="Colindancias_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <br />
-                                                    <asp:Button ID="Agregar_Colindancia_Button" runat="server" Text="Agregar colindancia" CssClass="btn btn-primary" OnClick="Agregar_Colindancia_Button_Click" />
+                                                <div id="Datos_Colindancias" runat="server">
+                                                    <div class="col-lg-4">
+                                                        <asp:Label ID="Label15" runat="server" Text="Pto. Cardinal:"></asp:Label>
+                                                        <asp:TextBox ID="Punto_Cardinal_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <asp:Label ID="Label16" runat="server" Text="Distancia en Mts:"></asp:Label>
+                                                        <asp:TextBox ID="Distancia_Metros_TextBox" runat="server" CssClass="form-control"
+                                                            onkeypress="if(event.keyCode<48 || event.keyCode>57)event.returnValue=false;"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <asp:Label ID="Label17" runat="server" Text="Colindancias:"></asp:Label>
+                                                        <asp:TextBox ID="Colindancias_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <br />
+                                                        <asp:Button ID="Agregar_Colindancia_Button" runat="server" Text="Agregar colindancia" CssClass="btn btn-primary" OnClick="Agregar_Colindancia_Button_Click" />
+                                                    </div>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <br />
@@ -512,8 +518,9 @@
                                                 <div id="Tipos_Operacion" runat="server">
                                                     <div class="col-lg-6">
                                                         <asp:Label ID="Label53" runat="server" Text="Seleccione tipo de operacion:"></asp:Label>
-                                                        <asp:DropDownList ID="Tipos_Operacion_DropDownList" runat="server" CssClass="form-control" 
-                                                            AutoPostBack="true" OnSelectedIndexChanged="Tipos_Operacion_DropDownList_SelectedIndexChanged"></asp:DropDownList>
+                                                        <asp:DropDownList ID="Tipos_Operacion_DropDownList" runat="server" CssClass="form-control"
+                                                            AutoPostBack="true" OnSelectedIndexChanged="Tipos_Operacion_DropDownList_SelectedIndexChanged">
+                                                        </asp:DropDownList>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <asp:Label ID="Label54" runat="server" Text="Explique:"></asp:Label>
@@ -569,10 +576,10 @@
 
                                                 <div class="col-lg-12">
                                                     <br />
-                                                    <asp:SqlDataSource ID="Datos_Predios_SqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:db_Catastros_ConnectionString %>" SelectCommand="SELECT [id_Solicitud_Predio], [calle], [numero_Lote], [numero_Manzana], [superficie_Terreno] FROM [Catastro_Solicitudes_Predios] WHERE (([id_Solicitud_Notaria] = @id_Solicitud_Notaria) AND ([tipo_Origen_Destino] = @tipo_Origen_Destino))">
+                                                    <asp:SqlDataSource ID="Datos_Predios_SqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:db_Catastros_ConnectionString %>" SelectCommand="SELECT id_Solicitud_Predio, calle, numero_Lote, numero_Manzana, superficie_Terreno, clave_Catastral_Predio FROM Catastro_Solicitudes_Predios WHERE (id_Solicitud_Notaria = @id_Solicitud_Notaria) AND (tipo_Origen_Destino &lt;&gt; @tipo_Origen_Destino)">
                                                         <SelectParameters>
                                                             <asp:ControlParameter ControlID="id_Solicitud_Notaria_HiddenField" DefaultValue="0" Name="id_Solicitud_Notaria" PropertyName="Value" Type="Int32" />
-                                                            <asp:Parameter DefaultValue="2" Name="tipo_Origen_Destino" Type="Int32" />
+                                                            <asp:ControlParameter ControlID="Tipo_Predio_HiddenField" DefaultValue="0" Name="tipo_Origen_Destino" PropertyName="Value" Type="Int32" />
                                                         </SelectParameters>
                                                     </asp:SqlDataSource>
                                                     <asp:GridView ID="Datos_Predios_GridView" runat="server" AutoGenerateColumns="False"
@@ -580,6 +587,7 @@
                                                         CssClass="table table-bordered table-striped" OnRowCommand="Datos_Predios_GridView_RowCommand">
                                                         <Columns>
                                                             <asp:BoundField DataField="id_Solicitud_Predio" HeaderText="Num. Solicitud" InsertVisible="False" ReadOnly="True" SortExpression="id_Solicitud_Predio" />
+                                                            <asp:BoundField DataField="clave_Catastral_Predio" HeaderText="Clave Catastral" SortExpression="calle" />
                                                             <asp:BoundField DataField="calle" HeaderText="Calle" SortExpression="calle" />
                                                             <asp:BoundField DataField="numero_Lote" HeaderText="Numero Lote" SortExpression="numero_Lote" />
                                                             <asp:BoundField DataField="numero_Manzana" HeaderText="Numero Manzana" SortExpression="numero_Manzana" />

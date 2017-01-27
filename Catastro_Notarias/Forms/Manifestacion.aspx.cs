@@ -25,6 +25,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
     int tipo_manifiesto;
 
     int id_solicitud;
+    int estado;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -36,8 +37,8 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
         //SESSION DE ID SOLICITUD NOTARIA
         //if (Request["id"] != null)
         //{
-            id_Solicitud_Notaria = Convert.ToInt32(Session["id_solicitud_notaria"]);
-            id_Solicitud_Notaria_HiddenField.Value = id_Solicitud_Notaria.ToString();
+        id_Solicitud_Notaria = Convert.ToInt32(Session["id_solicitud_notaria"]);
+        id_Solicitud_Notaria_HiddenField.Value = id_Solicitud_Notaria.ToString();
         //}
 
         if (Request["t"] != null)
@@ -49,6 +50,11 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
 
             tipo_tramite = Request["t"].ToString();
             Manifestacion();
+        }
+
+        if(Request["e"] != null)
+        {
+            estado = Convert.ToInt32(Request["e"].ToString());
         }
 
         if (!IsPostBack)
@@ -65,6 +71,18 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
 
     protected void Manifestacion()
     {
+        if(estado != 2)
+        {
+            Datos_Quien_Trasnmite.Visible = false;
+            Datos_Quien_Adquiere.Visible = false;
+            Datos_Colindancias.Visible = false;
+            Datos_Quien_Adquiere_GridView.Columns[2].Visible = false;
+            Datos_Quien_Transmite_GridView.Columns[2].Visible = false;
+            Colindancias_GridView.Columns[3].Visible = false;
+            Guardar_Enviar_Button.Visible = false;
+            Guardar_Sin_Enviar_Button.Visible = false;
+        }
+
         switch (tipo_tramite)
         {
             //RECTIFICACION URBANO
@@ -166,6 +184,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
                 bloque_10.Visible = false;
                 bloque_11.Visible = false;
                 bloque_12.Visible = false;
+                Datos_Predios_GridView.Columns[1].Visible = false;
                 Tipo_Predio_HiddenField.Value = "1";
                 break;
 
@@ -202,6 +221,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
 
     protected void Guardar_Sin_Enviar_Button_Click(object sender, EventArgs e)
     {
+        
         if (Oficina_Ubicacion_TextBox.Text != "")
         {
             Guardar_Editar_Informacion();
@@ -224,7 +244,8 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
             {
                 int valor = Convert.ToInt32(Tipo_Predio_HiddenField.Value);
                 info_solicitud = (from buscar in contexto.Catastro_Solicitudes_Predios where buscar.id_Solicitud_Notaria == id_Solicitud_Notaria && buscar.tipo_Origen_Destino == valor select buscar).First();
-            }else
+            }
+            else
             {
                 info_solicitud = (from buscar in contexto.Catastro_Solicitudes_Predios where buscar.id_Solicitud_Notaria == id_Solicitud_Notaria select buscar).First();
             }
@@ -304,15 +325,16 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
                 Curp_Subdivision_TextBox.Text = solicitudes_notarias.curp_Vendedor;
             }
 
-            if(solicitudes_notarias.id_Estatus_Solicitud != 1)
+            if (solicitudes_notarias.id_Estatus_Solicitud != 1)
             {
-                for(int x = 0; x < listCampos.Count; x++)
+                for (int x = 0; x < listCampos.Count; x++)
                 {
-                    if(listCampos[x].GetType().Name == "TextBox")
+                    if (listCampos[x].GetType().Name == "TextBox")
                     {
                         TextBox txt = (TextBox)listCampos[x];
                         txt.ReadOnly = true;
-                    }else if (listCampos[x].GetType().Name == "DropDownList")
+                    }
+                    else if (listCampos[x].GetType().Name == "DropDownList")
                     {
                         DropDownList drop = (DropDownList)listCampos[x];
                         drop.Enabled = false;
@@ -361,9 +383,9 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
     {
         var predios = new Catastro_Solicitudes_Predios();
 
-        if(tipo_tramite == "ru" || tipo_tramite == "rr" || tipo_tramite == "tu" || tipo_tramite == "tr")
+        if (tipo_tramite == "ru" || tipo_tramite == "rr" || tipo_tramite == "tu" || tipo_tramite == "tr")
         {
-            if(Clave_Catastral_Comprador_TextBox.Text == "" || Clave_Catastral_Vendedor_TextBox.Text == "")
+            if (Clave_Catastral_Comprador_TextBox.Text == "" || Clave_Catastral_Vendedor_TextBox.Text == "")
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "mensaje", "despliega_aviso('Informacion incompleta, verifique clave catastrales.');", true);
             }
@@ -447,7 +469,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
         ////9. Documento
         //if (Tipo_Documento_DropDownList.SelectedValue == "0")
         //{
-            solicitudes_notarias.tipo_Documento = Tipo_Documento_DropDownList.SelectedValue;
+        solicitudes_notarias.tipo_Documento = Tipo_Documento_DropDownList.SelectedValue;
         //}
         //else if (Tipo_Documento_DropDownList.SelectedValue == "1")
         //{
@@ -455,16 +477,16 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
         //}
         solicitudes_notarias.numero = Numero_Documento_TextBox.Text;
         solicitudes_notarias.volumen = Volumen_Documento_TextBox.Text;
-        solicitudes_notarias.fecha_Documento = DateTime.TryParse(Fecha_Documento_TextBox.Text, out vfecha) ? Convert.ToDateTime(Fecha_Documento_TextBox.Text) : vfecha; 
+        solicitudes_notarias.fecha_Documento = DateTime.TryParse(Fecha_Documento_TextBox.Text, out vfecha) ? Convert.ToDateTime(Fecha_Documento_TextBox.Text) : vfecha;
 
         ////10. Impuesto sobre traslacion de dominio
 
         if (tipo_tramite == "ru" || tipo_tramite == "rr" || tipo_tramite == "tu" || tipo_tramite == "tr")
         {
-            solicitudes_notarias.precio_Pactado = Decimal.TryParse(Precio_Pactado_TextBox.Text, out result) ? result : 0; 
+            solicitudes_notarias.precio_Pactado = Decimal.TryParse(Precio_Pactado_TextBox.Text, out result) ? result : 0;
             solicitudes_notarias.avaluo_Comercial = Decimal.TryParse(Avaluo_Comercial_TextBox.Text, out result) ? result : 0;
-            solicitudes_notarias.valor_Base_Impuesto = Decimal.TryParse(Valor_Base_TextBox.Text, out result) ? result : 0; 
-            solicitudes_notarias.deduccion = Decimal.TryParse(Deduccion_TextBox.Text, out result) ? result : 0; 
+            solicitudes_notarias.valor_Base_Impuesto = Decimal.TryParse(Valor_Base_TextBox.Text, out result) ? result : 0;
+            solicitudes_notarias.deduccion = Decimal.TryParse(Deduccion_TextBox.Text, out result) ? result : 0;
             solicitudes_notarias.base_gravable = Decimal.TryParse(Base_Gravable_TextBox.Text, out result) ? result : 0;
         }
 
@@ -620,7 +642,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
             Nombre_Predio_Rural_TextBox,
             Poblacion_Mas_Cercana_TextBox,
             Municipio_Predio_Rural_TextBox,
-            Valor_Catastral_TextBox,
+            //Valor_Catastral_TextBox,
             Superficie_Terreno_Predio_TextBox,
             Calle_Domicilio_Notificacion_TextBox,
             Numero_Docimicilio_Notificacion_TextBox,
@@ -653,7 +675,10 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
     protected void Agregar_Predio_Button_Click(object sender, EventArgs e)
     {
 
-        if (Calle_Predios_TextBox.Text != "" && Lote_Predios_TextBox.Text != "" && Manzana_Predios_TextBox.Text != "" && Superficie_Terreno_Predios_TextBox.Text != "") {
+        int valor = Convert.ToInt32(Tipo_Predio_HiddenField.Value);
+
+        if (Calle_Predios_TextBox.Text != "" && Lote_Predios_TextBox.Text != "" && Manzana_Predios_TextBox.Text != "" && Superficie_Terreno_Predios_TextBox.Text != "")
+        {
 
             Catastro_Solicitudes_Predios predios = new Catastro_Solicitudes_Predios();
 
@@ -661,13 +686,15 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
             predios.numero_Lote = Lote_Predios_TextBox.Text;
             predios.numero_Manzana = Manzana_Predios_TextBox.Text;
             predios.superficie_Terreno = Convert.ToInt32(Superficie_Terreno_Predios_TextBox.Text);
-            predios.id_Solicitud_Notaria = id_Solicitud_Notaria;
+            predios.id_Solicitud_Notaria = id_Solicitud_Notaria;         
 
             if (Tipo_Predio_HiddenField.Value == "1")
             {
                 predios.tipo_Origen_Destino = 2;
-            } else if (Tipo_Predio_HiddenField.Value == "2")
+            }
+            else if (Tipo_Predio_HiddenField.Value == "2")
             {
+                predios.clave_Catastral_Predio = clave_catastral_lote_fusionar_TextBox.Text;
                 predios.tipo_Origen_Destino = 1;
             }
 
@@ -675,8 +702,15 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
 
             contexto.SaveChanges();
 
+            Calle_Predios_TextBox.Text = "";
+            Lote_Predios_TextBox.Text = "";
+            Manzana_Predios_TextBox.Text = "";
+            Superficie_Terreno_Predios_TextBox.Text = "";
+            clave_catastral_lote_fusionar_TextBox.Text = "";
+
             Datos_Predios_GridView.DataBind();
-        }else
+        }
+        else
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "mensaje", "despliega_aviso('Quedan campos vacios.');", true);
         }
@@ -689,7 +723,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
         int rowIndex = int.Parse(e.CommandArgument.ToString());
         Id_Predio_HiddenField.Value = Datos_Predios_GridView.DataKeys[rowIndex]["id_Solicitud_Predio"].ToString();
 
-        if(e.CommandName == "Colindancias")
+        if (e.CommandName == "Colindancias")
         {
             Info_Predios_Colindancias.Visible = true;
         }
@@ -722,9 +756,11 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
 
             contexto.SaveChanges();
 
-            Punto_Cardinal_TextBox.Text = "";
-            Distancia_Metros_TextBox.Text = "";
-            Colindancias_TextBox.Text = "";
+            Punto_Cardial_Predio_TextBox.Text = "";
+            Distancia_Metros_Predio_TextBox.Text = "";
+            Colindancias__Predios_TextBox.Text = "";
+
+            Colindancias_Predios_GridView.DataBind();
         }
     }
 
@@ -740,7 +776,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
         contexto.SaveChanges();
 
         Colindancias_Predios_GridView.DataBind();
-        
+
     }
 
     protected void Tipos_Operacion_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
@@ -748,7 +784,8 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
         if (Tipos_Operacion_DropDownList.SelectedIndex == 6)
         {
             Otro_Tipo_Operacion_TextBox.ReadOnly = false;
-        }else
+        }
+        else
         {
             Otro_Tipo_Operacion_TextBox.ReadOnly = true;
         }

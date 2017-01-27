@@ -10,8 +10,6 @@
 
     <%-- MODAL ADJUNTAR ARCHIVOS --%>
     <div id="div_adjuntar">
-
-
         <div class="row">
             <div class="col-lg-12">
                 <fieldset>

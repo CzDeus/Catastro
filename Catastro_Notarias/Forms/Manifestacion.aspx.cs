@@ -52,7 +52,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
             Manifestacion();
         }
 
-        if(Request["e"] != null)
+        if (Request["e"] != null)
         {
             estado = Convert.ToInt32(Request["e"].ToString());
         }
@@ -71,7 +71,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
 
     protected void Manifestacion()
     {
-        if(estado != 2)
+        if (estado == 2)
         {
             Datos_Quien_Trasnmite.Visible = false;
             Datos_Quien_Adquiere.Visible = false;
@@ -221,7 +221,6 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
 
     protected void Guardar_Sin_Enviar_Button_Click(object sender, EventArgs e)
     {
-        
         if (Oficina_Ubicacion_TextBox.Text != "")
         {
             Guardar_Editar_Informacion();
@@ -372,10 +371,26 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
 
     protected void Guardar_Enviar_Button_Click(object sender, EventArgs e)
     {
+        lista_Campos();
+
+        for (int x = 0; x < listCampos.Count; x++)
+        {
+            if (listCampos[x].GetType().Name == "TextBox")
+            {
+                TextBox txt = (TextBox)listCampos[x];
+                if (txt.Text == "")
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "mensaje", "despliega_aviso('Informacion incompleta, verifique los datos');", true);
+                    return;
+                }
+            }
+        }
+
         Guardar_Editar_Informacion();
 
         var cambiar_estado = (from buscar in contexto.Catastro_Solicitudes_Notarias where buscar.id_Solicitud_Notaria == id_Solicitud_Notaria select buscar).First();
         cambiar_estado.id_Estatus_Solicitud = 2;
+
         contexto.SaveChanges();
     }
 
@@ -621,17 +636,10 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
 
     protected void lista_Campos()
     {
-        listCampos = new List<object>()
+        List<Object> listCampos_generales = new List<object>()
         {
             Oficina_Ubicacion_TextBox,
             Folio_TextBox,
-            Clave_Catastral_Subdivision_TextBox,
-            Codigo_Postal_Subdivision_TextBox,
-            Curp_Subdivision_TextBox,
-            Clave_Catastral_Vendedor_TextBox,
-            Clave_Catastral_Comprador_TextBox,
-            Curp_Vendedor_TextBox,
-            Curp_Comprador_TextBox,
             Municipio_Predio_Origen_TextBox,
             Poblacion_Predio_Origen_TextBox,
             Calle_Predio_Origen_TextBox,
@@ -639,37 +647,72 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
             Colonia_Predio_Origen_TextBox,
             Num_Lote_Predio_Origen_TextBox,
             Num_Manzana_Predio_Origen_TextBox,
-            Nombre_Predio_Rural_TextBox,
-            Poblacion_Mas_Cercana_TextBox,
-            Municipio_Predio_Rural_TextBox,
             //Valor_Catastral_TextBox,
             Superficie_Terreno_Predio_TextBox,
-            Calle_Domicilio_Notificacion_TextBox,
-            Numero_Docimicilio_Notificacion_TextBox,
-            Colonia_Domicilio_Notificacion_TextBox,
-            Poblacion_Domicilio_Notificacion_TextBox,
-            Estado_Domicilio_Notificacion_TextBox,
-            Codigo_Postal_Domicilio_Notificacion_TextBox,
-            Rfc_Domicilio_Notificacion_TextBox,
-            Superficie_Hectareas_TextBox,
-            Otro_Tipo_Operacion_TextBox,
-            Tipo_Operacion_Especifico_TextBox,
-            clave_catastral_lote_fusionar_TextBox,
+
+            //Superficie_Hectareas_TextBox,
+            //Otro_Tipo_Operacion_TextBox,
+            //Tipo_Operacion_Especifico_TextBox,
+            //clave_catastral_lote_fusionar_TextBox,
             Numero_Documento_TextBox,
             Volumen_Documento_TextBox,
-            Precio_Pactado_TextBox,
-            Avaluo_Comercial_TextBox,
-            Valor_Base_TextBox,
-            Deduccion_TextBox,
-            Base_Gravable_TextBox,
             Tipo_Predio_DropDownList,
             Uso_Predio_DropDownList,
             Operaciones_DropDownList,
             Clase_Terreno_DropDownList,
             Tipos_Operacion_DropDownList,
-            Tipo_Documento_DropDownList,
-
+            Tipo_Documento_DropDownList
         };
+
+        listCampos = listCampos_generales.ToList();
+
+        if (tipo_tramite == "ru" || tipo_tramite == "tu" || tipo_tramite == "rr" || tipo_tramite == "tr")
+        {
+            List<object> list_encabezado = new List<object>()
+            {
+                Clave_Catastral_Vendedor_TextBox,
+                Clave_Catastral_Comprador_TextBox,
+                Curp_Vendedor_TextBox,
+                Calle_Domicilio_Notificacion_TextBox,
+                Numero_Docimicilio_Notificacion_TextBox,
+                Colonia_Domicilio_Notificacion_TextBox,
+                Poblacion_Domicilio_Notificacion_TextBox,
+                Estado_Domicilio_Notificacion_TextBox,
+                Codigo_Postal_Domicilio_Notificacion_TextBox,
+                Rfc_Domicilio_Notificacion_TextBox,
+                Precio_Pactado_TextBox,
+                Avaluo_Comercial_TextBox,
+                Valor_Base_TextBox,
+                Deduccion_TextBox,
+                Base_Gravable_TextBox,
+            };
+
+            if (tipo_tramite == "rr" || tipo_tramite == "tr")
+            {
+                List<object> list_Rur = new List<object>()
+            {
+                Nombre_Predio_Rural_TextBox,
+                Poblacion_Mas_Cercana_TextBox,
+                Municipio_Predio_Rural_TextBox
+            };
+                var lista_final = listCampos_generales.Union(list_encabezado);
+
+                listCampos = lista_final.ToList();
+            }
+        }
+
+        if (tipo_tramite == "di")
+        {
+            List<object> listDiv = new List<object>() {
+            Clave_Catastral_Subdivision_TextBox,
+            Codigo_Postal_Subdivision_TextBox,
+            Curp_Subdivision_TextBox
+            };
+
+            var lista_final = listCampos_generales.Union(listDiv);
+
+            listCampos = lista_final.ToList();
+        }
     }
 
     protected void Agregar_Predio_Button_Click(object sender, EventArgs e)
@@ -686,7 +729,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
             predios.numero_Lote = Lote_Predios_TextBox.Text;
             predios.numero_Manzana = Manzana_Predios_TextBox.Text;
             predios.superficie_Terreno = Convert.ToInt32(Superficie_Terreno_Predios_TextBox.Text);
-            predios.id_Solicitud_Notaria = id_Solicitud_Notaria;         
+            predios.id_Solicitud_Notaria = id_Solicitud_Notaria;
 
             if (Tipo_Predio_HiddenField.Value == "1")
             {
@@ -789,5 +832,10 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
         {
             Otro_Tipo_Operacion_TextBox.ReadOnly = true;
         }
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
     }
 }

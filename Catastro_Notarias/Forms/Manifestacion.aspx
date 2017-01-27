@@ -769,20 +769,41 @@
                 </div>
             </div>
 
-            <%-- MODAL CANCELAR --%>
-            <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+<%--            <button id="btnSave" class="btn btn-primary btn-lg btn-block btn-sm btn-setmargin" type="button" data-toggle="modal" data-target="#confirm-delete">Save</button>
+
+            <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3>
-                                <asp:Label ID="Label67" runat="server" Text="La "></asp:Label></h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Confirm</h4>
                         </div>
                         <div class="modal-body">
+                            <p>You are about to save one record.</p>
+                            <p>Do you want to proceed?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-danger btn-ok" data-dismiss="modal" onclick="lista_Campos">Yes</button>
+                            <asp:Button ID="Button1" runat="server" Text="Button" data-dismiss="modal" OnClick="Archivos_Adjuntos_Button_Click"/>
+                        </div>
+                    </div>
+                </div>--%>
+
+
+                <%-- MODAL CANCELAR --%>
+                <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>
+                                    <asp:Label ID="Label67" runat="server" Text="La "></asp:Label></h3>
+                            </div>
+                            <div class="modal-body">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

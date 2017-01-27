@@ -63,6 +63,7 @@ public partial class Forms_Archivos_Adjuntos : System.Web.UI.Page
             archivos.id_notaria = Convert.ToInt32(id_notaria);
             archivos.id_solicitud_notaria = id_solicitud_notaria;
             archivos.nombre_archivo = Nombre_Documento_TextBox.Text;
+            archivos.fecha_subida = DateTime.Now;
             archivos.direccion_documento = warchivo;
 
             contexto.Catastro_Archivos.Add(archivos);

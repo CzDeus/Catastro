@@ -61,13 +61,10 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
                 //Encabezado_Label.Text = "MANIFESTACION DE RECTIFICACION DE DATOS CATASTRALES PREDIO URBANO";
                 Operacion_Sub_Fus.Visible = false;
                 bloque_8.Visible = false;
-                Div8.Visible = false;
                 bloque_11.Visible = false;
                 Div11.Visible = false;
                 bloque_12.Visible = false;
-                Div12.Visible = false;
                 bloque_13.Visible = false;
-                Div13.Visible = false;
 
                 //tipo_manifiesto = 1;
                 break;
@@ -77,11 +74,8 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
                 //Titulo_Manifiesto.Text = "MANIFESTACION DE RECTIFICACION DE DATOS CATASTRALES PREDIO RURAL";
                 Operacion_Sub_Fus.Visible = false;
                 bloque_1.Visible = false;
-                Div1.Visible = false;
                 bloque_2.Visible = false;
-                Div2.Visible = false;
                 bloque_13.Visible = false;
-                Div13.Visible = false;
 
                 //tipo_manifiesto = 5;
                 break;
@@ -94,9 +88,7 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
                 bloque_11.Visible = false;
                 Div11.Visible = false;
                 bloque_12.Visible = false;
-                Div12.Visible = false;
                 bloque_13.Visible = false;
-                Div13.Visible = false;
 
                 //tipo_manifiesto = 2;
                 break;
@@ -107,11 +99,8 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
                 clave_catastral_lotes_fusionar.Visible = false;
                 Operacion_Sub_Fus.Visible = false;
                 bloque_1.Visible = false;
-                Div1.Visible = false;
                 bloque_2.Visible = false;
-                Div2.Visible = false;
                 bloque_13.Visible = false;
-                Div13.Visible = false;
 
                 //tipo_manifiesto = 6;
                 break;
@@ -136,15 +125,11 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
                 Titulo_Quien_Adquiere_Label.Text = "Propietarios";
                 //Claves_Curps.Visible = false;
                 bloque_3.Visible = false;
-                Div3.Visible = false;
                 bloque_5.Visible = false;
-                Div5.Visible = false;
                 bloque_10.Visible = false;
-                Div10.Visible = false;
                 bloque_11.Visible = false;
                 Div11.Visible = false;
                 bloque_12.Visible = false;
-                Div12.Visible = false;
                 break;
 
             //SUBDIVISION URBANO - SUBDIVISION RURAL
@@ -169,15 +154,11 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
                 //Encabezado_Sub.Visible = true;
                 //Claves_Curps.Visible = false;
                 bloque_4.Visible = false;
-                Div4.Visible = false;
                 bloque_5.Visible = false;
-                Div5.Visible = false;
                 bloque_10.Visible = false;
-                Div10.Visible = false;
                 bloque_11.Visible = false;
                 Div11.Visible = false;
                 bloque_12.Visible = false;
-                Div12.Visible = false;
                 break;
 
             //LOTIFICACION
@@ -243,7 +224,7 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
 
             var solicitudes_notarias = (from info in contexto.Catastro_Solicitudes_Notarias where info.id_Solicitud_Notaria == id_solicitud_notaria select info).First();
 
-            Tipo_Documento_DropDownList.Text = solicitudes_notarias.es_Titulo_Propiedad;
+            //Tipo_Documento_DropDownList.Text = solicitudes_notarias.es_Titulo_Propiedad;
             Numero_Documento_TextBox.Text = solicitudes_notarias.numero;
             Volumen_Documento_TextBox.Text = solicitudes_notarias.volumen;
             Fecha_Documento_TextBox.Text = solicitudes_notarias.fecha_Documento.ToString(); ;
@@ -286,7 +267,6 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
 
         Municipio_Info_Catastro_TextBox.Text = (from buscar in contexto.Catastro_Catalogo_Municipios where buscar.id_Catalogo_Municipio == select_info.id_Catalogo_Municipio select buscar.nombre_Municipio).First();
         Poblacion_Dom_Not_Info_Catastro_TextBox.Text = (from buscar in contexto.Catastro_Catalogo_Poblaciones where buscar.id_Catalogo_Poblacion == select_info.id_Catalogo_Poblacion select buscar.nombre_Poblacion).First();
-
     }
 
     private void Cargar_DropDownList()
@@ -410,9 +390,6 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
         if (error)
             ScriptManager.RegisterStartupScript(this, this.GetType(), "mensaje", "despliega_aviso('Ocurrio un error. Pongase en contacto con sistemas');", true);
     }
-
-
-
 
     protected void Verificado_Button_Click(object sender, EventArgs e)
     {

@@ -1458,3 +1458,19 @@
    en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
    en System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
    en Login.btnAcceso_Click(Object sender, EventArgs e) en c:\Users\User\Desktop\Proyectos\Catastro\Catastro_Notarias\Login.aspx.cs:línea 46
+
+27/1/2017 11:26. Subproceso anulado.   en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.AbortCurrentThread()
+   en System.Web.HttpResponse.End()
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   en Login.btnAcceso_Click(Object sender, EventArgs e) en c:\Users\User\Desktop\Proyectos\Catastro\Catastro_Notarias\Login.aspx.cs:línea 46
+
+28/1/2017 12:52. Subproceso anulado.   en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.AbortCurrentThread()
+   en System.Web.HttpResponse.End()
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   en Login.btnAcceso_Click(Object sender, EventArgs e) en c:\Users\User\Desktop\Proyectos\Catastro\Catastro_Notarias\Login.aspx.cs:línea 46

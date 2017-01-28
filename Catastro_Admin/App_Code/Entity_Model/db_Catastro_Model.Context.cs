@@ -32,7 +32,6 @@ namespace Entity_Model
         public virtual DbSet<tb_Generales_Usuarios> tb_Generales_Usuarios { get; set; }
         public virtual DbSet<tb_Generales_Usuarios_Contraseñas> tb_Generales_Usuarios_Contraseñas { get; set; }
         public virtual DbSet<Catastro_Solicitudes_Domicilio_Notificacion> Catastro_Solicitudes_Domicilio_Notificacion { get; set; }
-        public virtual DbSet<Catastro_Solicitudes_Notarias> Catastro_Solicitudes_Notarias { get; set; }
         public virtual DbSet<Catastro_Solicitudes_Predios> Catastro_Solicitudes_Predios { get; set; }
         public virtual DbSet<Catastro_Solicitudes_Propietarios> Catastro_Solicitudes_Propietarios { get; set; }
         public virtual DbSet<Catastro_Solicitudes_Uso_Terreno_Rural> Catastro_Solicitudes_Uso_Terreno_Rural { get; set; }
@@ -48,6 +47,7 @@ namespace Entity_Model
         public virtual DbSet<Catastro_Fichas_Domicilios_Notificaciones> Catastro_Fichas_Domicilios_Notificaciones { get; set; }
         public virtual DbSet<Catastro_Fichas_Propietarios> Catastro_Fichas_Propietarios { get; set; }
         public virtual DbSet<Catastro_Fichas_Terrenos> Catastro_Fichas_Terrenos { get; set; }
+        public virtual DbSet<Catastro_Solicitudes_Notarias> Catastro_Solicitudes_Notarias { get; set; }
     
         public virtual ObjectResult<sp_Leer_Propietarios_Result> sp_Leer_Propietarios(Nullable<int> id_ficha)
         {

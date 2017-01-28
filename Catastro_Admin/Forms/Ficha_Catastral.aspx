@@ -31,7 +31,7 @@
             </div>
             <div id="Nueva_Ficha" runat="server" class="col-lg-offset-5 col-lg-1" style="text-align: center">
                 <br />
-                <asp:Button ID="Nueva_Ficha_Button" runat="server" Text="Nueva Ficha" CssClass="btn btn-info" OnClick="Buscar_Ficha_Button_Click" />
+                <asp:Button ID="Nueva_Ficha_Button" runat="server" Text="Nueva Ficha" CssClass="btn btn-info" OnClick="Nueva_Ficha_Button_Click" />
             </div>
 
             <%-- ULTIMOS MOVIMIENTOS --%>
@@ -59,7 +59,36 @@
                 </div>
             </div>
 
-
+            <%-- INFORMACION PRINCIPAL --%>
+            <div id="info_principal" class="row col-lg-12" runat="server" visible="false" style="text-align: center">
+                <div class="col-lg-12">
+                    <div class="col-lg-offset-4 col-lg-4">
+                        <asp:Label ID="Label68" runat="server" Text="Numero notaria:"></asp:Label>
+                        <asp:TextBox ID="Numero_Notaria_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+                <div class=" col-lg-12">
+                    <div class="col-lg-offset-4 col-lg-4">
+                        <asp:Label ID="Label69" runat="server" Text="Predio:"></asp:Label>
+                        <asp:TextBox ID="Predio_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="col-lg-offset-4 col-lg-4">
+                        <asp:Label ID="Label70" runat="server" Text="Clave catastral:"></asp:Label>
+                        <asp:TextBox ID="Clave_Catastral_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <br />
+                    <div class="col-lg-offset-3 col-lg-3">
+                        <asp:Button ID="Crear_Ficha_Button" runat="server" Text="Crear ficha" CssClass="btn btn-primary" OnClick="Crear_Ficha_Button_Click"/>
+                    </div>
+                    <div class="col-lg-3">
+                        <asp:Button ID="Volver_Button" runat="server" Text="Volver" CssClass="btn btn-danger" />
+                    </div>
+                </div>
+            </div>
 
             <%-- FICHA CATASTRAL --%>
             <div id="Ficha_Catastral_div" runat="server" visible="false">

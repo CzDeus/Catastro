@@ -32,26 +32,44 @@ public partial class Forms_Ficha_Catastral : System.Web.UI.Page
         Buscador.Visible = false;
     }
 
-    protected void Cancelar_Baja_Button_Click(object sender, EventArgs e)
-    {
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "confirmar_baja", "$('#confirmar_baja').modal('show');", true);
-    }
-
     protected void Cancelar_Baja_Button_Click1(object sender, EventArgs e)
     {
         baja_predio.Visible = false;
         Ficha_Catastral_div.Visible = true;
         Ultimos_Movimientos.Visible = false;
         Buscador.Visible = false;
-
     }
 
     protected void Buscar_Ficha_Button_Click(object sender, EventArgs e)
     {
-        Ficha_Catastral_div.Visible = true;
+        info_principal.Visible = true;
+        Ficha_Catastral_div.Visible = false;
         Ultimos_Movimientos.Visible = false;
         Buscador.Visible = false;
         Nueva_Ficha.Visible = false;
+    }
+
+    protected void Volver_Inicio_Button_Click(object sender, EventArgs e)
+    {
+        baja_predio.Visible = false;
+        Ficha_Catastral_div.Visible = false;
+        Ultimos_Movimientos.Visible = true;
+        Buscador.Visible = true;
+        Nueva_Ficha.Visible = true;
+    }
+
+    protected void Nueva_Ficha_Button_Click(object sender, EventArgs e)
+    {
+        info_principal.Visible = true;
+        Ficha_Catastral_div.Visible = false;
+        Ultimos_Movimientos.Visible = false;
+        Buscador.Visible = false;
+        Nueva_Ficha.Visible = false;
+    }
+
+    protected void Cancelar_Baja_Button_Click(object sender, EventArgs e)
+    {
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "confirmar_baja", "$('#confirmar_baja').modal('show');", true);
     }
 
     protected void Correcion_Informacion_Button_Click(object sender, EventArgs e)
@@ -62,15 +80,6 @@ public partial class Forms_Ficha_Catastral : System.Web.UI.Page
     protected void Elegir_Tabs(object sender, CommandEventArgs e)
     {
 
-    }
-
-    protected void Volver_Inicio_Button_Click(object sender, EventArgs e)
-    {
-        baja_predio.Visible = false;
-        Ficha_Catastral_div.Visible = false;
-        Ultimos_Movimientos.Visible = true;
-        Buscador.Visible = true;
-        Nueva_Ficha.Visible = true;
     }
 
     protected void Ultimos_Movimientos_GridView_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -150,5 +159,18 @@ public partial class Forms_Ficha_Catastral : System.Web.UI.Page
         //Banda_Valor_Terreno_TextBox.Text
         Valor_Unitario_Terreno_TextBox.Text = info_terreno.valor_Unitario.ToString();
         //Valor_Terreno_TextBox.Text
+    }
+
+    protected void Crear_Ficha_Button_Click(object sender, EventArgs e)
+    {
+        Catastro_Fichas nueva_ficha = new Catastro_Fichas();
+
+        //CORREGIR LOS DATOS POR SUS RESPECTIVOS ID
+        nueva_ficha.id_Solicitud_Notaria = Convert.ToInt32(Numero_Notaria_TextBox.Text);
+        nueva_ficha.id_Predio = Convert.ToInt32(Predio_TextBox.Text);
+        nueva_ficha.clave_Catastral = Clave_Catastral_TextBox.Text;
+
+        contexto.Catastro_Fichas.Add(nueva_ficha);
+        contexto.SaveChanges();
     }
 }

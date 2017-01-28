@@ -241,8 +241,7 @@ namespace Entity_Model
         public string clave_Catastral_Comprador { get; set; }
         public string curp_Comprador { get; set; }
         public string numero_Autorizacion { get; set; }
-        public string es_Escritura { get; set; }
-        public string es_Titulo_Propiedad { get; set; }
+        public string tipo_Documento { get; set; }
         public string numero { get; set; }
         public string volumen { get; set; }
         public Nullable<System.DateTime> fecha_Documento { get; set; }

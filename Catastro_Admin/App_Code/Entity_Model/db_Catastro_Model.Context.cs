@@ -93,5 +93,23 @@ namespace Entity_Model
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Leer_Ubicacion_Generales_Result>("sp_Leer_Ubicacion_Generales", id_fichaParameter);
         }
+    
+        public virtual ObjectResult<sp_Ubicacion_Info_Predios_Notarias_Result> sp_Ubicacion_Info_Predios_Notarias(string clave_catastral)
+        {
+            var clave_catastralParameter = clave_catastral != null ?
+                new ObjectParameter("clave_catastral", clave_catastral) :
+                new ObjectParameter("clave_catastral", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Ubicacion_Info_Predios_Notarias_Result>("sp_Ubicacion_Info_Predios_Notarias", clave_catastralParameter);
+        }
+    
+        public virtual ObjectResult<sp_Domicilio_Notificacion_Info_Predios_Notarias_Result> sp_Domicilio_Notificacion_Info_Predios_Notarias(Nullable<int> id_ficha)
+        {
+            var id_fichaParameter = id_ficha.HasValue ?
+                new ObjectParameter("id_ficha", id_ficha) :
+                new ObjectParameter("id_ficha", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Domicilio_Notificacion_Info_Predios_Notarias_Result>("sp_Domicilio_Notificacion_Info_Predios_Notarias", id_fichaParameter);
+        }
     }
 }

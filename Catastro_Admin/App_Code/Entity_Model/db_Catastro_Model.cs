@@ -375,6 +375,17 @@ namespace Entity_Model
 {
     using System;
     
+    public partial class sp_Domicilio_Notificacion_Info_Predios_Notarias_Result
+    {
+        public string nombre_Calle { get; set; }
+        public string numero_Oficial { get; set; }
+        public string nombre_Colonia { get; set; }
+    }
+}
+namespace Entity_Model
+{
+    using System;
+    
     public partial class sp_Leer_Construcciones_Result
     {
         public System.DateTime fecha_Construccion { get; set; }
@@ -450,5 +461,19 @@ namespace Entity_Model
         public string volumen { get; set; }
         public System.DateTime fecha_Escritura { get; set; }
         public string numero_Medidor { get; set; }
+    }
+}
+namespace Entity_Model
+{
+    using System;
+    
+    public partial class sp_Ubicacion_Info_Predios_Notarias_Result
+    {
+        public Nullable<int> Ficha { get; set; }
+        public string nombre_Municipio { get; set; }
+        public string nombre_Poblacion { get; set; }
+        public string nombre_Calle { get; set; }
+        public string numero_Ubicacion_Predio { get; set; }
+        public string nombre_Colonia { get; set; }
     }
 }

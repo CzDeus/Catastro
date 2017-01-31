@@ -285,6 +285,9 @@
           <Property Name="password" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="GUID" Type="nvarchar" MaxLength="40" />
         </EntityType>
+        <Function Name="sp_Domicilio_Notificacion_Info_Predios_Notarias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_ficha" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_Leer_Construcciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_ficha" Type="int" Mode="In" />
         </Function>
@@ -299,6 +302,9 @@
         </Function>
         <Function Name="sp_Leer_Ubicacion_Generales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_ficha" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Ubicacion_Info_Predios_Notarias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="clave_catastral" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="db_CatastrosModelStoreContainer">
           <EntitySet Name="Catastro_Catalogo_Municipios" EntityType="Self.Catastro_Catalogo_Municipios" Schema="dbo" store:Type="Tables" />
@@ -402,6 +408,12 @@
           <Parameter Name="id_ficha" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="Catastro_Solicitudes_Notarias" EntityType="db_CatastrosModel.Catastro_Solicitudes_Notarias" />
+          <FunctionImport Name="sp_Ubicacion_Info_Predios_Notarias" ReturnType="Collection(db_CatastrosModel.sp_Ubicacion_Info_Predios_Notarias_Result)">
+          <Parameter Name="clave_catastral" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Domicilio_Notificacion_Info_Predios_Notarias" ReturnType="Collection(db_CatastrosModel.sp_Domicilio_Notificacion_Info_Predios_Notarias_Result)">
+            <Parameter Name="id_ficha" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Catastro_Solicitudes_Domicilio_Notificacion">
           <Key>
@@ -696,6 +708,19 @@
           <Property Name="total" Type="Decimal" Precision="16" Scale="2" />
           <Property Name="cancelado" Type="Boolean" Nullable="false" />
         </EntityType>
+        <ComplexType Name="sp_Ubicacion_Info_Predios_Notarias_Result">
+          <Property Type="Int32" Name="Ficha" Nullable="true" />
+          <Property Type="String" Name="nombre_Municipio" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="nombre_Poblacion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="nombre_Calle" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="numero_Ubicacion_Predio" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="nombre_Colonia" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_Domicilio_Notificacion_Info_Predios_Notarias_Result">
+          <Property Type="String" Name="nombre_Calle" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="numero_Oficial" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="nombre_Colonia" Nullable="true" MaxLength="100" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1074,6 +1099,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_Ubicacion_Info_Predios_Notarias" FunctionName="db_CatastrosModel.Store.sp_Ubicacion_Info_Predios_Notarias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_CatastrosModel.sp_Ubicacion_Info_Predios_Notarias_Result">
+                <ScalarProperty Name="Ficha" ColumnName="Ficha" />
+                <ScalarProperty Name="nombre_Municipio" ColumnName="nombre_Municipio" />
+                <ScalarProperty Name="nombre_Poblacion" ColumnName="nombre_Poblacion" />
+                <ScalarProperty Name="nombre_Calle" ColumnName="nombre_Calle" />
+                <ScalarProperty Name="numero_Ubicacion_Predio" ColumnName="numero_Ubicacion_Predio" />
+                <ScalarProperty Name="nombre_Colonia" ColumnName="nombre_Colonia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Domicilio_Notificacion_Info_Predios_Notarias" FunctionName="db_CatastrosModel.Store.sp_Domicilio_Notificacion_Info_Predios_Notarias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_CatastrosModel.sp_Domicilio_Notificacion_Info_Predios_Notarias_Result">
+                <ScalarProperty Name="nombre_Calle" ColumnName="nombre_Calle" />
+                <ScalarProperty Name="numero_Oficial" ColumnName="numero_Oficial" />
+                <ScalarProperty Name="nombre_Colonia" ColumnName="nombre_Colonia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

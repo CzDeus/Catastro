@@ -10,6 +10,7 @@
     <asp:UpdatePanel runat="server" ID="ID_Panel" UpdateMode="Always">
         <ContentTemplate>
             <asp:HiddenField ID="Id_Solicitud_HiddenField" runat="server" />
+            <asp:HiddenField ID="id_Propietarios_Transmite_HiddenField" runat="server" />
             <h1 style="background: #CCCCCC; text-align: center">
                 <asp:Label ID="Encabezado_Label" runat="server" Text="Revision de manifestacion"></asp:Label></h1>
 
@@ -76,6 +77,7 @@
                     <div class="ibox-content" style="display: block">
                         <div class="panel-body">
                             <div class="panel-group" id="accordion">
+
                                 <%--1. Ubicacion del predio --%>
                                 <div id="bloque_1" runat="server" class="panel panel-default">
                                     <div class="panel-heading">
@@ -556,7 +558,7 @@
                                                         <div class="row" style="text-align: center">
                                                             <div class="col-lg-9">
                                                                 <asp:Label ID="Label56" runat="server" Text="Calle:"></asp:Label>
-                                                                <asp:TextBox ID="TextBox13" runat="server" CssClass="form-control"></asp:TextBox>
+                                                                <asp:TextBox ID="Calle_Dom_Not_Catastro_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
                                                             </div>
                                                             <div class="col-lg-3">
                                                                 <asp:Label ID="Label57" runat="server" Text="Numero:"></asp:Label>
@@ -654,7 +656,7 @@
                                 </div>
 
                                 <%-- 6. Colindancias --%>
-                                <div id="Div20" runat="server" class="panel panel-default">
+                                <div id="bloque_6" runat="server" class="panel panel-default">
                                     <div class="panel-heading">
                                         <h5 class="panel-tittle">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse8" aria-expanded="false" class="collapsed">Colindancias</a>
@@ -729,10 +731,10 @@
                                 </div>
 
                                 <%-- Label tipo subdivisio/fusion --%>
-                                <div id="tipo_sub_fus_" runat="server" class="panel panel-default" style="text-align: center">
+                                <div id="tipo_sub_fus" runat="server" class="panel panel-default" style="text-align: center">
                                     <div class="panel-heading">
                                         <h5 class="panel-tittle">
-                                            <asp:Label ID="tipo_sub_fus_Label" runat="server" Text="Subdividir" Font-Size="Large" Font-Bold="True"></asp:Label>
+                                            <asp:Label ID="tipo_sub_fus_Label" runat="server" Text="Subdividir" Font-Size="Large" Font-Bold="True" Visible="false"></asp:Label>
                                         </h5>
                                     </div>
                                 </div>
@@ -945,7 +947,7 @@
                                     </div>--%>
 
                                 <%-- 9. Documento --%>
-                                <div id="Div26" runat="server" class="panel panel-default">
+                                <div id="bloque_9" runat="server" class="panel panel-default">
                                     <div class="panel-heading">
                                         <h5 class="panel-tittle">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse11" aria-expanded="false" class="collapsed">Documento</a>
@@ -980,7 +982,7 @@
                                                                 <asp:Label ID="Label38" runat="server" Text="Fecha:"></asp:Label>
                                                                 <div class="input-group date">
                                                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                    <asp:TextBox ID="Fecha_Documento_TextBox" runat="server" CssClass="form-control" BackColor="#ffffea"></asp:TextBox>
+                                                                    <asp:TextBox ID="Fecha_Documento_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1015,7 +1017,7 @@
                                                                 <asp:Label ID="Label77" runat="server" Text="Fecha:"></asp:Label>
                                                                 <div class="input-group date">
                                                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                    <asp:TextBox ID="Fecha_Doc_Info_Catastro_TextBox" runat="server" CssClass="form-control" BackColor="#ffffea"></asp:TextBox>
+                                                                    <asp:TextBox ID="Fecha_Doc_Info_Catastro_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1119,6 +1121,7 @@
 
             <%-- BOTONES GENERALES --%>
             <div class="row" style="text-align: center">
+                <br />
                 <div class="col-lg-4">
                     <asp:Button ID="Button6" runat="server" Text="Regresar Notaria" CssClass="btn btn-warning" />
                 </div>

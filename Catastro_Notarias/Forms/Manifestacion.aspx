@@ -499,7 +499,7 @@
                                     </div>--%>
 
                                 <%-- Label tipo subdivisio/fusion --%>
-                                <div id="tipo_sub_fus" class="row">
+                                <div id="tipo_sub_fus" runat="server" class="row">
                                     <div class="col-lg-12" style="text-align: center">
                                         <asp:Label ID="tipo_sub_fus_Label" runat="server" Text="Subdividir" Font-Size="Large" Font-Bold="True" Visible="false"></asp:Label>
                                     </div>

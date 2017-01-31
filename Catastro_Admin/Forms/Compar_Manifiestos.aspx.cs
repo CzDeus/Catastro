@@ -39,7 +39,7 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
             }
 
             tipo_tramite = Request["t"].ToString();
-            //Manifestacion();
+            Manifestacion();
         }
 
         if (!IsPostBack)
@@ -60,12 +60,11 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
             case "ru":
                 //Encabezado_Label.Text = "MANIFESTACION DE RECTIFICACION DE DATOS CATASTRALES PREDIO URBANO";
                 Operacion_Sub_Fus.Visible = false;
-                bloque_8.Visible = false;
                 bloque_11.Visible = false;
                 Div11.Visible = false;
                 bloque_12.Visible = false;
                 bloque_13.Visible = false;
-
+                tipo_sub_fus.Visible = false;
                 //tipo_manifiesto = 1;
                 break;
 
@@ -76,6 +75,7 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
                 bloque_1.Visible = false;
                 bloque_2.Visible = false;
                 bloque_13.Visible = false;
+                tipo_sub_fus.Visible = false;
 
                 //tipo_manifiesto = 5;
                 break;
@@ -89,6 +89,7 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
                 Div11.Visible = false;
                 bloque_12.Visible = false;
                 bloque_13.Visible = false;
+                tipo_sub_fus.Visible = false;
 
                 //tipo_manifiesto = 2;
                 break;
@@ -101,6 +102,7 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
                 bloque_1.Visible = false;
                 bloque_2.Visible = false;
                 bloque_13.Visible = false;
+                tipo_sub_fus.Visible = false;
 
                 //tipo_manifiesto = 6;
                 break;
@@ -209,8 +211,10 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
             }
 
             Uso_Predio_DropDownList.SelectedIndex = Convert.ToInt32(info_solicitud.id_Catalogo_Uso_Terreno);
-            Tipo_Predio_DropDownList.SelectedIndex = Convert.ToInt32(info_solicitud.id_Catalogo_Uso_Terreno);
+            Tipo_Predio_DropDownList.SelectedIndex = Convert.ToInt32(info_solicitud.id_Catalogo_Tipo_Terreno);
             Operaciones_DropDownList.SelectedIndex = Convert.ToInt32(info_solicitud.id_Catalogo_Tipo_Operacion);
+
+            Tipos_Operacion_DropDownList.SelectedIndex = Convert.ToInt32(info_solicitud.id_Catalogo_Tipo_Operacion);
 
             var domicilio_notificacion = (from info in contexto.Catastro_Solicitudes_Domicilio_Notificacion where info.id_Solicitud_Notaria == id_solicitud_notaria select info).First();
 
@@ -224,7 +228,7 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
 
             var solicitudes_notarias = (from info in contexto.Catastro_Solicitudes_Notarias where info.id_Solicitud_Notaria == id_solicitud_notaria select info).First();
 
-            //Tipo_Documento_DropDownList.Text = solicitudes_notarias.es_Titulo_Propiedad;
+            Tipo_Documento_DropDownList.Text = solicitudes_notarias.tipo_Documento;
             Numero_Documento_TextBox.Text = solicitudes_notarias.numero;
             Volumen_Documento_TextBox.Text = solicitudes_notarias.volumen;
             Fecha_Documento_TextBox.Text = solicitudes_notarias.fecha_Documento.ToString(); ;
@@ -254,19 +258,36 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
                 //Curp_Subdivision_TextBox.Text = solicitudes_notarias.curp_Vendedor;
             }
         }
-
-        //Tipos_Operacion_DropDownList.DataBind();
         //Operaciones_DropDownList
     }
 
     protected void Cargar_Informacion_Catastro()
     {
-        var select_id = (from buscar in contexto.Catastro_Fichas where buscar.clave_Catastral == clave_buscar && buscar.estatus == 1 select buscar).First();
+        //var select_id = (from buscar in contexto.Catastro_Fichas where buscar.clave_Catastral == clave_buscar && buscar.estatus == 1 select buscar).First();
 
-        var select_info = (from buscar in contexto.Catastro_Fichas_Generales where buscar.id_Ficha == select_id.id_Ficha select buscar).First();
+        //var select_info = (from buscar in contexto.Catastro_Fichas_Generales where buscar.id_Ficha == select_id.id_Ficha select buscar).First();
 
-        Municipio_Info_Catastro_TextBox.Text = (from buscar in contexto.Catastro_Catalogo_Municipios where buscar.id_Catalogo_Municipio == select_info.id_Catalogo_Municipio select buscar.nombre_Municipio).First();
-        Poblacion_Dom_Not_Info_Catastro_TextBox.Text = (from buscar in contexto.Catastro_Catalogo_Poblaciones where buscar.id_Catalogo_Poblacion == select_info.id_Catalogo_Poblacion select buscar.nombre_Poblacion).First();
+        //Municipio_Info_Catastro_TextBox.Text = (from buscar in contexto.Catastro_Catalogo_Municipios where buscar.id_Catalogo_Municipio == select_info.id_Catalogo_Municipio select buscar.nombre_Municipio).First();
+        //Poblacion_Dom_Not_Info_Catastro_TextBox.Text = (from buscar in contexto.Catastro_Catalogo_Poblaciones where buscar.id_Catalogo_Poblacion == select_info.id_Catalogo_Poblacion select buscar.nombre_Poblacion).First();
+
+        //Num_Ofi_Info_Catastro_TextBox.Text = select_info.numero_Ubicacion_Predio;
+
+        var ubicacion = contexto.sp_Ubicacion_Info_Predios_Notarias(clave_buscar).First();
+        Municipio_Info_Catastro_TextBox.Text = ubicacion.nombre_Municipio;
+        Poblacion_Info_Catastro_TextBox.Text = ubicacion.nombre_Poblacion;
+        Calle_Info_Catastro_TextBox.Text = ubicacion.nombre_Calle;
+        Num_Ofi_Info_Catastro_TextBox.Text = ubicacion.numero_Ubicacion_Predio;
+        Colonia_Info_Catastro_TextBox.Text = ubicacion.nombre_Colonia;
+
+        var dom_Notificacion = contexto.sp_Domicilio_Notificacion_Info_Predios_Notarias(ubicacion.Ficha).First();
+        Calle_Dom_Not_Catastro_TextBox.Text = dom_Notificacion.nombre_Calle;
+        Numero_Info_Catastro_TextBox.Text = dom_Notificacion.numero_Oficial;
+        Colonia_Dom_Not_Info_Catastro_TextBox.Text = dom_Notificacion.nombre_Colonia;
+
+
+
+        //Calle_Info_Catastro_TextBox.Text = (from buscar in contexto.cata)
+
     }
 
     private void Cargar_DropDownList()
@@ -285,6 +306,11 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
         Operaciones_DropDownList.DataTextField = "nombre_Operacion";
         Operaciones_DropDownList.DataValueField = "id_Catalogo_Tipo_Operacion";
         Operaciones_DropDownList.DataBind();
+
+        Tipos_Operacion_DropDownList.DataSource = (from buscar in contexto.Catastro_Catalogo_Operaciones select new { buscar.id_Catalogo_Tipo_Operacion, buscar.nombre_Operacion }).ToList();
+        Tipos_Operacion_DropDownList.DataTextField = "nombre_Operacion";
+        Tipos_Operacion_DropDownList.DataValueField = "id_Catalogo_Tipo_Operacion";
+        Tipos_Operacion_DropDownList.DataBind();
     }
 
     protected void Observaciones_Button_Click(object sender, EventArgs e)

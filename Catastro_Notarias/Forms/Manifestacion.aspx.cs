@@ -92,7 +92,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
                 bloque_11.Visible = false;
                 bloque_12.Visible = false;
                 bloque_13.Visible = false;
-
+                tipo_sub_fus.Visible = false;
                 tipo_manifiesto = 1;
                 break;
 
@@ -103,7 +103,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
                 bloque_1.Visible = false;
                 bloque_2.Visible = false;
                 bloque_13.Visible = false;
-
+                tipo_sub_fus.Visible = false;
                 tipo_manifiesto = 5;
                 break;
 
@@ -115,7 +115,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
                 bloque_11.Visible = false;
                 bloque_12.Visible = false;
                 bloque_13.Visible = false;
-
+                tipo_sub_fus.Visible = false;
                 tipo_manifiesto = 2;
                 break;
 
@@ -127,7 +127,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
                 bloque_1.Visible = false;
                 bloque_2.Visible = false;
                 bloque_13.Visible = false;
-
+                tipo_sub_fus.Visible = false;
                 tipo_manifiesto = 6;
                 break;
 
@@ -380,6 +380,7 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
                 TextBox txt = (TextBox)listCampos[x];
                 if (txt.Text == "")
                 {
+                    string a = txt.ID;
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "mensaje", "despliega_aviso('Informacion incompleta, verifique los datos');", true);
                     return;
                 }
@@ -431,9 +432,9 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
             /*FALTAN ESTOS DATOS EN LA BASE DE DATOS*/
             ////2. Informacion predio
             predios.superficie_Terreno = Decimal.TryParse(Superficie_Terreno_Predio_TextBox.Text, out result) ? result : 0;
-            predios.id_Catalogo_Tipo_Terreno = Convert.ToInt32(Tipo_Predio_DropDownList.SelectedValue);
-            predios.id_Catalogo_Uso_Terreno = Convert.ToInt32(Uso_Predio_DropDownList.SelectedValue);
-            predios.id_Catalogo_Tipo_Operacion = Convert.ToInt32(Operaciones_DropDownList.SelectedValue);
+            predios.id_Catalogo_Tipo_Terreno = Convert.ToInt32(Tipo_Predio_DropDownList.SelectedIndex);
+            predios.id_Catalogo_Uso_Terreno = Convert.ToInt32(Uso_Predio_DropDownList.SelectedIndex);
+            predios.id_Catalogo_Tipo_Operacion = Convert.ToInt32(Operaciones_DropDownList.SelectedIndex);
         }
         else
         {
@@ -641,14 +642,8 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
             Oficina_Ubicacion_TextBox,
             Folio_TextBox,
             Municipio_Predio_Origen_TextBox,
-            Poblacion_Predio_Origen_TextBox,
-            Calle_Predio_Origen_TextBox,
-            Num_Oficional_Predio_Origen_TextBox,
-            Colonia_Predio_Origen_TextBox,
-            Num_Lote_Predio_Origen_TextBox,
-            Num_Manzana_Predio_Origen_TextBox,
-            //Valor_Catastral_TextBox,
-            Superficie_Terreno_Predio_TextBox,
+
+
 
             //Superficie_Hectareas_TextBox,
             //Otro_Tipo_Operacion_TextBox,
@@ -696,6 +691,25 @@ public partial class Forms_Manifestacion : System.Web.UI.Page
                 Municipio_Predio_Rural_TextBox
             };
                 var lista_final = listCampos_generales.Union(list_encabezado);
+
+                listCampos = lista_final.ToList();
+            }
+            else
+            {
+                List<object> list_demas = new List<object>() {
+                Poblacion_Predio_Origen_TextBox,
+                Calle_Predio_Origen_TextBox,
+                Num_Oficional_Predio_Origen_TextBox,
+                Colonia_Predio_Origen_TextBox,
+                Num_Lote_Predio_Origen_TextBox,
+                Num_Manzana_Predio_Origen_TextBox,
+
+                //Valor_Catastral_TextBox,
+
+                Superficie_Terreno_Predio_TextBox
+                };
+
+                var lista_final = listCampos_generales.Union(list_demas);
 
                 listCampos = lista_final.ToList();
             }

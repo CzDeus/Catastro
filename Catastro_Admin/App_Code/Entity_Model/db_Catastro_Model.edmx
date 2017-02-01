@@ -87,10 +87,14 @@
           <Property Name="id_Ficha" Type="int" Nullable="false" />
           <Property Name="id_Catalogo_Colonia" Type="int" Nullable="false" />
           <Property Name="id_Catalogo_Calle" Type="int" Nullable="false" />
-          <Property Name="numero_Oficial" Type="nvarchar" MaxLength="5" />
-          <Property Name="referencia" Type="nvarchar(max)" />
-          <Property Name="telefono" Type="nvarchar" MaxLength="12" />
-          <Property Name="correo" Type="nvarchar" MaxLength="100" />
+          <Property Name="numero_Oficial" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="referencia" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="correo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="poblacion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="codigo_postal" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="rfc" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="Catastro_Fichas_Generales">
           <Key>
@@ -106,19 +110,21 @@
           <Property Name="id_Catalogo_Codigo_Postal" Type="int" Nullable="false" />
           <Property Name="id_Catalogo_Notaria" Type="int" Nullable="false" />
           <Property Name="id_Catalogo_Tasa_Impuesto_Predial" Type="int" Nullable="false" />
-          <Property Name="clave_Catastral" Type="nvarchar" MaxLength="12" />
-          <Property Name="codigo_Postal" Type="nvarchar" MaxLength="5" />
-          <Property Name="numero_Ubicacion_Predio" Type="nvarchar" MaxLength="10" />
-          <Property Name="domicilio_Fiscal" Type="nvarchar(max)" />
+          <Property Name="clave_Catastral" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="codigo_Postal" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="numero_Ubicacion_Predio" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="domicilio_Fiscal" Type="nvarchar(max)" Nullable="false" />
           <Property Name="cuota_Fija" Type="decimal" Precision="16" Scale="2" Nullable="false" />
           <Property Name="fecha_Vigencia" Type="datetime" Nullable="false" />
           <Property Name="fecha_Baldio" Type="datetime" Nullable="false" />
-          <Property Name="rpp" Type="nvarchar" MaxLength="25" />
+          <Property Name="rpp" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="fecha_RPP" Type="datetime" Nullable="false" />
-          <Property Name="escritura" Type="nvarchar" MaxLength="25" />
+          <Property Name="escritura" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="fecha_Escritura" Type="datetime" Nullable="false" />
-          <Property Name="volumen" Type="nvarchar" MaxLength="20" />
-          <Property Name="numero_Medidor" Type="nvarchar" MaxLength="20" />
+          <Property Name="volumen" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="numero_Medidor" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="numero_Manzana" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="numero_lote" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Catastro_Fichas_Propietarios">
           <Key>
@@ -384,12 +390,10 @@
           <EntitySet Name="Catastro_Catalogo_Tipos_Terrenos" EntityType="db_CatastrosModel.Catastro_Catalogo_Tipos_Terrenos" />
           <EntitySet Name="Catastro_Catalogo_Usos_Terrenos_Urbanos" EntityType="db_CatastrosModel.Catastro_Catalogo_Usos_Terrenos_Urbanos" />
           <EntitySet Name="Catastro_Fichas" EntityType="db_CatastrosModel.Catastro_Fichas" />
-          <EntitySet Name="Catastro_Fichas_Generales" EntityType="db_CatastrosModel.Catastro_Fichas_Generales" />
           <EntitySet Name="Catastro_Catalogo_Municipios" EntityType="db_CatastrosModel.Catastro_Catalogo_Municipios" />
           <EntitySet Name="Catastro_Catalogo_Poblaciones" EntityType="db_CatastrosModel.Catastro_Catalogo_Poblaciones" />
           <EntitySet Name="Catastro_Fichas_Construcciones" EntityType="db_CatastrosModel.Catastro_Fichas_Construcciones" />
           <EntitySet Name="Catastro_Fichas_Demeritos" EntityType="db_CatastrosModel.Catastro_Fichas_Demeritos" />
-          <EntitySet Name="Catastro_Fichas_Domicilios_Notificaciones" EntityType="db_CatastrosModel.Catastro_Fichas_Domicilios_Notificaciones" />
           <EntitySet Name="Catastro_Fichas_Propietarios" EntityType="db_CatastrosModel.Catastro_Fichas_Propietarios" />
           <EntitySet Name="Catastro_Fichas_Terrenos" EntityType="db_CatastrosModel.Catastro_Fichas_Terrenos" />
           <FunctionImport Name="sp_Leer_Propietarios" ReturnType="Collection(db_CatastrosModel.sp_Leer_Propietarios_Result)">
@@ -404,15 +408,17 @@
           <FunctionImport Name="sp_Leer_Informacion_Terreno" ReturnType="Collection(db_CatastrosModel.sp_Leer_Informacion_Terreno_Result)">
           <Parameter Name="id_ficha" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Catastro_Solicitudes_Notarias" EntityType="db_CatastrosModel.Catastro_Solicitudes_Notarias" />
+          <EntitySet Name="Catastro_Fichas_Generales" EntityType="db_CatastrosModel.Catastro_Fichas_Generales" />
           <FunctionImport Name="sp_Leer_Ubicacion_Generales" ReturnType="Collection(db_CatastrosModel.sp_Leer_Ubicacion_Generales_Result)">
           <Parameter Name="id_ficha" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="Catastro_Solicitudes_Notarias" EntityType="db_CatastrosModel.Catastro_Solicitudes_Notarias" />
-          <FunctionImport Name="sp_Ubicacion_Info_Predios_Notarias" ReturnType="Collection(db_CatastrosModel.sp_Ubicacion_Info_Predios_Notarias_Result)">
-          <Parameter Name="clave_catastral" Mode="In" Type="String" />
-          </FunctionImport>
+          <EntitySet Name="Catastro_Fichas_Domicilios_Notificaciones" EntityType="db_CatastrosModel.Catastro_Fichas_Domicilios_Notificaciones" />
           <FunctionImport Name="sp_Domicilio_Notificacion_Info_Predios_Notarias" ReturnType="Collection(db_CatastrosModel.sp_Domicilio_Notificacion_Info_Predios_Notarias_Result)">
-            <Parameter Name="id_ficha" Mode="In" Type="Int32" />
+          <Parameter Name="id_ficha" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Ubicacion_Info_Predios_Notarias" ReturnType="Collection(db_CatastrosModel.sp_Ubicacion_Info_Predios_Notarias_Result)">
+            <Parameter Name="clave_catastral" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Catastro_Solicitudes_Domicilio_Notificacion">
@@ -508,34 +514,6 @@
           <Property Name="clave_Catastral" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="estatus" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Catastro_Fichas_Generales">
-          <Key>
-            <PropertyRef Name="id_Ficha_General" />
-          </Key>
-          <Property Name="id_Ficha_General" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_Ficha" Type="Int32" Nullable="false" />
-          <Property Name="id_Predio" Type="Int32" Nullable="false" />
-          <Property Name="id_Catalogo_Colonia" Type="Int32" Nullable="false" />
-          <Property Name="id_Catalogo_Calle" Type="Int32" Nullable="false" />
-          <Property Name="id_Catalogo_Poblacion" Type="Int32" Nullable="false" />
-          <Property Name="id_Catalogo_Municipio" Type="Int32" Nullable="false" />
-          <Property Name="id_Catalogo_Codigo_Postal" Type="Int32" Nullable="false" />
-          <Property Name="id_Catalogo_Notaria" Type="Int32" Nullable="false" />
-          <Property Name="id_Catalogo_Tasa_Impuesto_Predial" Type="Int32" Nullable="false" />
-          <Property Name="clave_Catastral" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Name="codigo_Postal" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="numero_Ubicacion_Predio" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="domicilio_Fiscal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="cuota_Fija" Type="Decimal" Nullable="false" Precision="16" Scale="2" />
-          <Property Name="fecha_Vigencia" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="fecha_Baldio" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="rpp" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="fecha_RPP" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="escritura" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="fecha_Escritura" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="volumen" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="numero_Medidor" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Catastro_Catalogo_Municipios">
           <Key>
             <PropertyRef Name="id_Catalogo_Municipio" />
@@ -576,19 +554,6 @@
           <Property Name="id_Ficha_Demerito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_Ficha" Type="Int32" Nullable="false" />
           <Property Name="id_Predio" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Catastro_Fichas_Domicilios_Notificaciones">
-          <Key>
-            <PropertyRef Name="id_Ficha_Domicilio_Notificacion" />
-          </Key>
-          <Property Name="id_Ficha_Domicilio_Notificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_Ficha" Type="Int32" Nullable="false" />
-          <Property Name="id_Catalogo_Colonia" Type="Int32" Nullable="false" />
-          <Property Name="id_Catalogo_Calle" Type="Int32" Nullable="false" />
-          <Property Name="numero_Oficial" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="referencia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="telefono" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Catastro_Fichas_Propietarios">
           <Key>
@@ -652,26 +617,6 @@
           <Property Type="String" Name="irregularidad_Terreno" Nullable="true" MaxLength="50" />
           <Property Type="Decimal" Name="valor_Unitario" Nullable="false" Precision="16" Scale="2" />
         </ComplexType>
-        <ComplexType Name="sp_Leer_Ubicacion_Generales_Result">
-          <Property Type="Int32" Name="id_Ficha" Nullable="false" />
-          <Property Type="Int32" Name="id_Catalogo_Calle" Nullable="false" />
-          <Property Type="Int32" Name="id_Catalogo_Colonia" Nullable="false" />
-          <Property Type="Int32" Name="id_Catalogo_Poblacion" Nullable="false" />
-          <Property Type="Int32" Name="id_Catalogo_Codigo_Postal" Nullable="false" />
-          <Property Type="String" Name="domicilio_Fiscal" Nullable="true" />
-          <Property Type="String" Name="clave_Catastral" Nullable="true" MaxLength="12" />
-          <Property Type="String" Name="nombre_Presidente" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="fecha_Movimiento" Nullable="true" Precision="23" />
-          <Property Type="Decimal" Name="cuota_Fija" Nullable="false" Precision="16" Scale="2" />
-          <Property Type="DateTime" Name="fecha_Vigencia" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="fecha_Baldio" Nullable="false" Precision="23" />
-          <Property Type="String" Name="rpp" Nullable="true" MaxLength="25" />
-          <Property Type="DateTime" Name="fecha_RPP" Nullable="false" Precision="23" />
-          <Property Type="String" Name="escritura" Nullable="true" MaxLength="25" />
-          <Property Type="String" Name="volumen" Nullable="true" MaxLength="20" />
-          <Property Type="DateTime" Name="fecha_Escritura" Nullable="false" Precision="23" />
-          <Property Type="String" Name="numero_Medidor" Nullable="true" MaxLength="20" />
-        </ComplexType>
         <EntityType Name="Catastro_Solicitudes_Notarias">
           <Key>
             <PropertyRef Name="id_Solicitud_Notaria" />
@@ -708,18 +653,93 @@
           <Property Name="total" Type="Decimal" Precision="16" Scale="2" />
           <Property Name="cancelado" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="Catastro_Fichas_Generales">
+          <Key>
+            <PropertyRef Name="id_Ficha_General" />
+          </Key>
+          <Property Name="id_Ficha_General" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Ficha" Type="Int32" Nullable="false" />
+          <Property Name="id_Predio" Type="Int32" Nullable="false" />
+          <Property Name="id_Catalogo_Colonia" Type="Int32" Nullable="false" />
+          <Property Name="id_Catalogo_Calle" Type="Int32" Nullable="false" />
+          <Property Name="id_Catalogo_Poblacion" Type="Int32" Nullable="false" />
+          <Property Name="id_Catalogo_Municipio" Type="Int32" Nullable="false" />
+          <Property Name="id_Catalogo_Codigo_Postal" Type="Int32" Nullable="false" />
+          <Property Name="id_Catalogo_Notaria" Type="Int32" Nullable="false" />
+          <Property Name="id_Catalogo_Tasa_Impuesto_Predial" Type="Int32" Nullable="false" />
+          <Property Name="clave_Catastral" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="codigo_Postal" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="numero_Ubicacion_Predio" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="domicilio_Fiscal" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cuota_Fija" Type="Decimal" Nullable="false" Precision="16" Scale="2" />
+          <Property Name="fecha_Vigencia" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fecha_Baldio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="rpp" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_RPP" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="escritura" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_Escritura" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="volumen" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="numero_Medidor" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="numero_Manzana" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="numero_lote" Type="Int32" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="sp_Leer_Ubicacion_Generales_Result">
+          <Property Type="Int32" Name="id_Ficha" Nullable="false" />
+          <Property Type="Int32" Name="id_Catalogo_Calle" Nullable="false" />
+          <Property Type="Int32" Name="id_Catalogo_Colonia" Nullable="false" />
+          <Property Type="Int32" Name="id_Catalogo_Poblacion" Nullable="false" />
+          <Property Type="Int32" Name="id_Catalogo_Codigo_Postal" Nullable="false" />
+          <Property Type="String" Name="domicilio_Fiscal" Nullable="false" />
+          <Property Type="String" Name="clave_Catastral" Nullable="false" MaxLength="12" />
+          <Property Type="String" Name="nombre_Presidente" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="fecha_Movimiento" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="cuota_Fija" Nullable="false" Precision="16" Scale="2" />
+          <Property Type="DateTime" Name="fecha_Vigencia" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="fecha_Baldio" Nullable="false" Precision="23" />
+          <Property Type="String" Name="rpp" Nullable="false" MaxLength="25" />
+          <Property Type="DateTime" Name="fecha_RPP" Nullable="false" Precision="23" />
+          <Property Type="String" Name="escritura" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="volumen" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="fecha_Escritura" Nullable="false" Precision="23" />
+          <Property Type="String" Name="numero_Medidor" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <EntityType Name="Catastro_Fichas_Domicilios_Notificaciones">
+          <Key>
+            <PropertyRef Name="id_Ficha_Domicilio_Notificacion" />
+          </Key>
+          <Property Name="id_Ficha_Domicilio_Notificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Ficha" Type="Int32" Nullable="false" />
+          <Property Name="id_Catalogo_Colonia" Type="Int32" Nullable="false" />
+          <Property Name="id_Catalogo_Calle" Type="Int32" Nullable="false" />
+          <Property Name="numero_Oficial" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="referencia" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="telefono" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="poblacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="codigo_postal" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="rfc" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="sp_Domicilio_Notificacion_Info_Predios_Notarias_Result">
+          <Property Type="String" Name="nombre_Calle" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="numero_Oficial" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="nombre_Colonia" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="poblacion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="codigo_postal" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="rfc" Nullable="false" MaxLength="25" />
+        </ComplexType>
         <ComplexType Name="sp_Ubicacion_Info_Predios_Notarias_Result">
           <Property Type="Int32" Name="Ficha" Nullable="true" />
           <Property Type="String" Name="nombre_Municipio" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="nombre_Poblacion" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="nombre_Calle" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="numero_Ubicacion_Predio" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="numero_Ubicacion_Predio" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="nombre_Colonia" Nullable="true" MaxLength="100" />
-        </ComplexType>
-        <ComplexType Name="sp_Domicilio_Notificacion_Info_Predios_Notarias_Result">
-          <Property Type="String" Name="nombre_Calle" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="numero_Oficial" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="nombre_Colonia" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="numero_Manzana" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="numero_lote" Nullable="false" />
+          <Property Type="String" Name="volumen" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="numero_Medidor" Nullable="false" MaxLength="20" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -870,35 +890,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Catastro_Fichas_Generales">
-            <EntityTypeMapping TypeName="db_CatastrosModel.Catastro_Fichas_Generales">
-              <MappingFragment StoreEntitySet="Catastro_Fichas_Generales">
-                <ScalarProperty Name="numero_Medidor" ColumnName="numero_Medidor" />
-                <ScalarProperty Name="volumen" ColumnName="volumen" />
-                <ScalarProperty Name="fecha_Escritura" ColumnName="fecha_Escritura" />
-                <ScalarProperty Name="escritura" ColumnName="escritura" />
-                <ScalarProperty Name="fecha_RPP" ColumnName="fecha_RPP" />
-                <ScalarProperty Name="rpp" ColumnName="rpp" />
-                <ScalarProperty Name="fecha_Baldio" ColumnName="fecha_Baldio" />
-                <ScalarProperty Name="fecha_Vigencia" ColumnName="fecha_Vigencia" />
-                <ScalarProperty Name="cuota_Fija" ColumnName="cuota_Fija" />
-                <ScalarProperty Name="domicilio_Fiscal" ColumnName="domicilio_Fiscal" />
-                <ScalarProperty Name="numero_Ubicacion_Predio" ColumnName="numero_Ubicacion_Predio" />
-                <ScalarProperty Name="codigo_Postal" ColumnName="codigo_Postal" />
-                <ScalarProperty Name="clave_Catastral" ColumnName="clave_Catastral" />
-                <ScalarProperty Name="id_Catalogo_Tasa_Impuesto_Predial" ColumnName="id_Catalogo_Tasa_Impuesto_Predial" />
-                <ScalarProperty Name="id_Catalogo_Notaria" ColumnName="id_Catalogo_Notaria" />
-                <ScalarProperty Name="id_Catalogo_Codigo_Postal" ColumnName="id_Catalogo_Codigo_Postal" />
-                <ScalarProperty Name="id_Catalogo_Municipio" ColumnName="id_Catalogo_Municipio" />
-                <ScalarProperty Name="id_Catalogo_Poblacion" ColumnName="id_Catalogo_Poblacion" />
-                <ScalarProperty Name="id_Catalogo_Calle" ColumnName="id_Catalogo_Calle" />
-                <ScalarProperty Name="id_Catalogo_Colonia" ColumnName="id_Catalogo_Colonia" />
-                <ScalarProperty Name="id_Predio" ColumnName="id_Predio" />
-                <ScalarProperty Name="id_Ficha" ColumnName="id_Ficha" />
-                <ScalarProperty Name="id_Ficha_General" ColumnName="id_Ficha_General" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Catastro_Catalogo_Municipios">
             <EntityTypeMapping TypeName="db_CatastrosModel.Catastro_Catalogo_Municipios">
               <MappingFragment StoreEntitySet="Catastro_Catalogo_Municipios">
@@ -941,20 +932,6 @@
                 <ScalarProperty Name="id_Predio" ColumnName="id_Predio" />
                 <ScalarProperty Name="id_Ficha" ColumnName="id_Ficha" />
                 <ScalarProperty Name="id_Ficha_Demerito" ColumnName="id_Ficha_Demerito" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Catastro_Fichas_Domicilios_Notificaciones">
-            <EntityTypeMapping TypeName="db_CatastrosModel.Catastro_Fichas_Domicilios_Notificaciones">
-              <MappingFragment StoreEntitySet="Catastro_Fichas_Domicilios_Notificaciones">
-                <ScalarProperty Name="correo" ColumnName="correo" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="referencia" ColumnName="referencia" />
-                <ScalarProperty Name="numero_Oficial" ColumnName="numero_Oficial" />
-                <ScalarProperty Name="id_Catalogo_Calle" ColumnName="id_Catalogo_Calle" />
-                <ScalarProperty Name="id_Catalogo_Colonia" ColumnName="id_Catalogo_Colonia" />
-                <ScalarProperty Name="id_Ficha" ColumnName="id_Ficha" />
-                <ScalarProperty Name="id_Ficha_Domicilio_Notificacion" ColumnName="id_Ficha_Domicilio_Notificacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1038,30 +1015,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Leer_Ubicacion_Generales" FunctionName="db_CatastrosModel.Store.sp_Leer_Ubicacion_Generales">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="db_CatastrosModel.sp_Leer_Ubicacion_Generales_Result">
-                <ScalarProperty Name="id_Ficha" ColumnName="id_Ficha" />
-                <ScalarProperty Name="id_Catalogo_Calle" ColumnName="id_Catalogo_Calle" />
-                <ScalarProperty Name="id_Catalogo_Colonia" ColumnName="id_Catalogo_Colonia" />
-                <ScalarProperty Name="id_Catalogo_Poblacion" ColumnName="id_Catalogo_Poblacion" />
-                <ScalarProperty Name="id_Catalogo_Codigo_Postal" ColumnName="id_Catalogo_Codigo_Postal" />
-                <ScalarProperty Name="domicilio_Fiscal" ColumnName="domicilio_Fiscal" />
-                <ScalarProperty Name="clave_Catastral" ColumnName="clave_Catastral" />
-                <ScalarProperty Name="nombre_Presidente" ColumnName="nombre_Presidente" />
-                <ScalarProperty Name="fecha_Movimiento" ColumnName="fecha_Movimiento" />
-                <ScalarProperty Name="cuota_Fija" ColumnName="cuota_Fija" />
-                <ScalarProperty Name="fecha_Vigencia" ColumnName="fecha_Vigencia" />
-                <ScalarProperty Name="fecha_Baldio" ColumnName="fecha_Baldio" />
-                <ScalarProperty Name="rpp" ColumnName="rpp" />
-                <ScalarProperty Name="fecha_RPP" ColumnName="fecha_RPP" />
-                <ScalarProperty Name="escritura" ColumnName="escritura" />
-                <ScalarProperty Name="volumen" ColumnName="volumen" />
-                <ScalarProperty Name="fecha_Escritura" ColumnName="fecha_Escritura" />
-                <ScalarProperty Name="numero_Medidor" ColumnName="numero_Medidor" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="Catastro_Solicitudes_Notarias">
             <EntityTypeMapping TypeName="db_CatastrosModel.Catastro_Solicitudes_Notarias">
               <MappingFragment StoreEntitySet="Catastro_Solicitudes_Notarias">
@@ -1099,6 +1052,92 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Catastro_Fichas_Generales">
+            <EntityTypeMapping TypeName="db_CatastrosModel.Catastro_Fichas_Generales">
+              <MappingFragment StoreEntitySet="Catastro_Fichas_Generales">
+                <ScalarProperty Name="numero_lote" ColumnName="numero_lote" />
+                <ScalarProperty Name="numero_Manzana" ColumnName="numero_Manzana" />
+                <ScalarProperty Name="numero_Medidor" ColumnName="numero_Medidor" />
+                <ScalarProperty Name="volumen" ColumnName="volumen" />
+                <ScalarProperty Name="fecha_Escritura" ColumnName="fecha_Escritura" />
+                <ScalarProperty Name="escritura" ColumnName="escritura" />
+                <ScalarProperty Name="fecha_RPP" ColumnName="fecha_RPP" />
+                <ScalarProperty Name="rpp" ColumnName="rpp" />
+                <ScalarProperty Name="fecha_Baldio" ColumnName="fecha_Baldio" />
+                <ScalarProperty Name="fecha_Vigencia" ColumnName="fecha_Vigencia" />
+                <ScalarProperty Name="cuota_Fija" ColumnName="cuota_Fija" />
+                <ScalarProperty Name="domicilio_Fiscal" ColumnName="domicilio_Fiscal" />
+                <ScalarProperty Name="numero_Ubicacion_Predio" ColumnName="numero_Ubicacion_Predio" />
+                <ScalarProperty Name="codigo_Postal" ColumnName="codigo_Postal" />
+                <ScalarProperty Name="clave_Catastral" ColumnName="clave_Catastral" />
+                <ScalarProperty Name="id_Catalogo_Tasa_Impuesto_Predial" ColumnName="id_Catalogo_Tasa_Impuesto_Predial" />
+                <ScalarProperty Name="id_Catalogo_Notaria" ColumnName="id_Catalogo_Notaria" />
+                <ScalarProperty Name="id_Catalogo_Codigo_Postal" ColumnName="id_Catalogo_Codigo_Postal" />
+                <ScalarProperty Name="id_Catalogo_Municipio" ColumnName="id_Catalogo_Municipio" />
+                <ScalarProperty Name="id_Catalogo_Poblacion" ColumnName="id_Catalogo_Poblacion" />
+                <ScalarProperty Name="id_Catalogo_Calle" ColumnName="id_Catalogo_Calle" />
+                <ScalarProperty Name="id_Catalogo_Colonia" ColumnName="id_Catalogo_Colonia" />
+                <ScalarProperty Name="id_Predio" ColumnName="id_Predio" />
+                <ScalarProperty Name="id_Ficha" ColumnName="id_Ficha" />
+                <ScalarProperty Name="id_Ficha_General" ColumnName="id_Ficha_General" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_Leer_Ubicacion_Generales" FunctionName="db_CatastrosModel.Store.sp_Leer_Ubicacion_Generales">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_CatastrosModel.sp_Leer_Ubicacion_Generales_Result">
+                <ScalarProperty Name="id_Ficha" ColumnName="id_Ficha" />
+                <ScalarProperty Name="id_Catalogo_Calle" ColumnName="id_Catalogo_Calle" />
+                <ScalarProperty Name="id_Catalogo_Colonia" ColumnName="id_Catalogo_Colonia" />
+                <ScalarProperty Name="id_Catalogo_Poblacion" ColumnName="id_Catalogo_Poblacion" />
+                <ScalarProperty Name="id_Catalogo_Codigo_Postal" ColumnName="id_Catalogo_Codigo_Postal" />
+                <ScalarProperty Name="domicilio_Fiscal" ColumnName="domicilio_Fiscal" />
+                <ScalarProperty Name="clave_Catastral" ColumnName="clave_Catastral" />
+                <ScalarProperty Name="nombre_Presidente" ColumnName="nombre_Presidente" />
+                <ScalarProperty Name="fecha_Movimiento" ColumnName="fecha_Movimiento" />
+                <ScalarProperty Name="cuota_Fija" ColumnName="cuota_Fija" />
+                <ScalarProperty Name="fecha_Vigencia" ColumnName="fecha_Vigencia" />
+                <ScalarProperty Name="fecha_Baldio" ColumnName="fecha_Baldio" />
+                <ScalarProperty Name="rpp" ColumnName="rpp" />
+                <ScalarProperty Name="fecha_RPP" ColumnName="fecha_RPP" />
+                <ScalarProperty Name="escritura" ColumnName="escritura" />
+                <ScalarProperty Name="volumen" ColumnName="volumen" />
+                <ScalarProperty Name="fecha_Escritura" ColumnName="fecha_Escritura" />
+                <ScalarProperty Name="numero_Medidor" ColumnName="numero_Medidor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Catastro_Fichas_Domicilios_Notificaciones">
+            <EntityTypeMapping TypeName="db_CatastrosModel.Catastro_Fichas_Domicilios_Notificaciones">
+              <MappingFragment StoreEntitySet="Catastro_Fichas_Domicilios_Notificaciones">
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="poblacion" ColumnName="poblacion" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="referencia" ColumnName="referencia" />
+                <ScalarProperty Name="numero_Oficial" ColumnName="numero_Oficial" />
+                <ScalarProperty Name="id_Catalogo_Calle" ColumnName="id_Catalogo_Calle" />
+                <ScalarProperty Name="id_Catalogo_Colonia" ColumnName="id_Catalogo_Colonia" />
+                <ScalarProperty Name="id_Ficha" ColumnName="id_Ficha" />
+                <ScalarProperty Name="id_Ficha_Domicilio_Notificacion" ColumnName="id_Ficha_Domicilio_Notificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_Domicilio_Notificacion_Info_Predios_Notarias" FunctionName="db_CatastrosModel.Store.sp_Domicilio_Notificacion_Info_Predios_Notarias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_CatastrosModel.sp_Domicilio_Notificacion_Info_Predios_Notarias_Result">
+                <ScalarProperty Name="nombre_Calle" ColumnName="nombre_Calle" />
+                <ScalarProperty Name="numero_Oficial" ColumnName="numero_Oficial" />
+                <ScalarProperty Name="nombre_Colonia" ColumnName="nombre_Colonia" />
+                <ScalarProperty Name="poblacion" ColumnName="poblacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Ubicacion_Info_Predios_Notarias" FunctionName="db_CatastrosModel.Store.sp_Ubicacion_Info_Predios_Notarias">
             <ResultMapping>
               <ComplexTypeMapping TypeName="db_CatastrosModel.sp_Ubicacion_Info_Predios_Notarias_Result">
@@ -1108,15 +1147,10 @@
                 <ScalarProperty Name="nombre_Calle" ColumnName="nombre_Calle" />
                 <ScalarProperty Name="numero_Ubicacion_Predio" ColumnName="numero_Ubicacion_Predio" />
                 <ScalarProperty Name="nombre_Colonia" ColumnName="nombre_Colonia" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Domicilio_Notificacion_Info_Predios_Notarias" FunctionName="db_CatastrosModel.Store.sp_Domicilio_Notificacion_Info_Predios_Notarias">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="db_CatastrosModel.sp_Domicilio_Notificacion_Info_Predios_Notarias_Result">
-                <ScalarProperty Name="nombre_Calle" ColumnName="nombre_Calle" />
-                <ScalarProperty Name="numero_Oficial" ColumnName="numero_Oficial" />
-                <ScalarProperty Name="nombre_Colonia" ColumnName="nombre_Colonia" />
+                <ScalarProperty Name="numero_Manzana" ColumnName="numero_Manzana" />
+                <ScalarProperty Name="numero_lote" ColumnName="numero_lote" />
+                <ScalarProperty Name="volumen" ColumnName="volumen" />
+                <ScalarProperty Name="numero_Medidor" ColumnName="numero_Medidor" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

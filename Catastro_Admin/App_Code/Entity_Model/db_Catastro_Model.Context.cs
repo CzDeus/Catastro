@@ -39,15 +39,15 @@ namespace Entity_Model
         public virtual DbSet<Catastro_Catalogo_Tipos_Terrenos> Catastro_Catalogo_Tipos_Terrenos { get; set; }
         public virtual DbSet<Catastro_Catalogo_Usos_Terrenos_Urbanos> Catastro_Catalogo_Usos_Terrenos_Urbanos { get; set; }
         public virtual DbSet<Catastro_Fichas> Catastro_Fichas { get; set; }
-        public virtual DbSet<Catastro_Fichas_Generales> Catastro_Fichas_Generales { get; set; }
         public virtual DbSet<Catastro_Catalogo_Municipios> Catastro_Catalogo_Municipios { get; set; }
         public virtual DbSet<Catastro_Catalogo_Poblaciones> Catastro_Catalogo_Poblaciones { get; set; }
         public virtual DbSet<Catastro_Fichas_Construcciones> Catastro_Fichas_Construcciones { get; set; }
         public virtual DbSet<Catastro_Fichas_Demeritos> Catastro_Fichas_Demeritos { get; set; }
-        public virtual DbSet<Catastro_Fichas_Domicilios_Notificaciones> Catastro_Fichas_Domicilios_Notificaciones { get; set; }
         public virtual DbSet<Catastro_Fichas_Propietarios> Catastro_Fichas_Propietarios { get; set; }
         public virtual DbSet<Catastro_Fichas_Terrenos> Catastro_Fichas_Terrenos { get; set; }
         public virtual DbSet<Catastro_Solicitudes_Notarias> Catastro_Solicitudes_Notarias { get; set; }
+        public virtual DbSet<Catastro_Fichas_Generales> Catastro_Fichas_Generales { get; set; }
+        public virtual DbSet<Catastro_Fichas_Domicilios_Notificaciones> Catastro_Fichas_Domicilios_Notificaciones { get; set; }
     
         public virtual ObjectResult<sp_Leer_Propietarios_Result> sp_Leer_Propietarios(Nullable<int> id_ficha)
         {
@@ -94,15 +94,6 @@ namespace Entity_Model
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Leer_Ubicacion_Generales_Result>("sp_Leer_Ubicacion_Generales", id_fichaParameter);
         }
     
-        public virtual ObjectResult<sp_Ubicacion_Info_Predios_Notarias_Result> sp_Ubicacion_Info_Predios_Notarias(string clave_catastral)
-        {
-            var clave_catastralParameter = clave_catastral != null ?
-                new ObjectParameter("clave_catastral", clave_catastral) :
-                new ObjectParameter("clave_catastral", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Ubicacion_Info_Predios_Notarias_Result>("sp_Ubicacion_Info_Predios_Notarias", clave_catastralParameter);
-        }
-    
         public virtual ObjectResult<sp_Domicilio_Notificacion_Info_Predios_Notarias_Result> sp_Domicilio_Notificacion_Info_Predios_Notarias(Nullable<int> id_ficha)
         {
             var id_fichaParameter = id_ficha.HasValue ?
@@ -110,6 +101,15 @@ namespace Entity_Model
                 new ObjectParameter("id_ficha", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Domicilio_Notificacion_Info_Predios_Notarias_Result>("sp_Domicilio_Notificacion_Info_Predios_Notarias", id_fichaParameter);
+        }
+    
+        public virtual ObjectResult<sp_Ubicacion_Info_Predios_Notarias_Result> sp_Ubicacion_Info_Predios_Notarias(string clave_catastral)
+        {
+            var clave_catastralParameter = clave_catastral != null ?
+                new ObjectParameter("clave_catastral", clave_catastral) :
+                new ObjectParameter("clave_catastral", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Ubicacion_Info_Predios_Notarias_Result>("sp_Ubicacion_Info_Predios_Notarias", clave_catastralParameter);
         }
     }
 }

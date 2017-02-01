@@ -128,6 +128,10 @@ namespace Entity_Model
         public string referencia { get; set; }
         public string telefono { get; set; }
         public string correo { get; set; }
+        public string poblacion { get; set; }
+        public string estado { get; set; }
+        public string codigo_postal { get; set; }
+        public string rfc { get; set; }
     }
 }
 namespace Entity_Model
@@ -160,6 +164,8 @@ namespace Entity_Model
         public System.DateTime fecha_Escritura { get; set; }
         public string volumen { get; set; }
         public string numero_Medidor { get; set; }
+        public string numero_Manzana { get; set; }
+        public int numero_lote { get; set; }
     }
 }
 namespace Entity_Model
@@ -380,6 +386,10 @@ namespace Entity_Model
         public string nombre_Calle { get; set; }
         public string numero_Oficial { get; set; }
         public string nombre_Colonia { get; set; }
+        public string poblacion { get; set; }
+        public string estado { get; set; }
+        public string codigo_postal { get; set; }
+        public string rfc { get; set; }
     }
 }
 namespace Entity_Model
@@ -475,5 +485,9 @@ namespace Entity_Model
         public string nombre_Calle { get; set; }
         public string numero_Ubicacion_Predio { get; set; }
         public string nombre_Colonia { get; set; }
+        public string numero_Manzana { get; set; }
+        public int numero_lote { get; set; }
+        public string volumen { get; set; }
+        public string numero_Medidor { get; set; }
     }
 }

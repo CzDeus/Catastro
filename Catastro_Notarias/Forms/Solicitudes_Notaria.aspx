@@ -72,6 +72,9 @@
                                     <asp:ButtonField Text="Eliminar" CommandName="Eliminar">
                                         <ControlStyle CssClass="btn btn-danger" />
                                     </asp:ButtonField>
+                                    <asp:ButtonField Text="Imprimir" CommandName="Imprimir">
+                                        <ControlStyle CssClass="btn btn-primary"/>
+                                    </asp:ButtonField>
 
                                 </Columns>
                             </asp:GridView>

@@ -791,7 +791,7 @@
                                                                     <asp:TextBox ID="Explique_Info_Catastro_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
                                                                 </div>
                                                             </div>
-                                                            <div id="Div_es" runat="server" class="col-lg-offset-4 col-lg-4">
+                                                            <div id="Operacion_Sub_Fus_2" runat="server" class="col-lg-offset-4 col-lg-4">
                                                                 <asp:Label ID="Label68" runat="server" Text="Especifique el tipo de operacion:"></asp:Label>
                                                                 <asp:TextBox ID="Espeficifique_Info_Catastro_TextBox" runat="server" CssClass="form-control"></asp:TextBox>
                                                             </div>
@@ -1123,7 +1123,7 @@
             <div class="row" style="text-align: center">
                 <br />
                 <div class="col-lg-4">
-                    <asp:Button ID="Button6" runat="server" Text="Regresar Notaria" CssClass="btn btn-warning" />
+                    <asp:Button ID="Regresar_Button" runat="server" Text="Regresar Notaria" CssClass="btn btn-warning"/>
                 </div>
                 <div class="col-lg-4">
                     <asp:Button ID="Button7" runat="server" Text="Cancelar" CssClass="btn btn-danger" />

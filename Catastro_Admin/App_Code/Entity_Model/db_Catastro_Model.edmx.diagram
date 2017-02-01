@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ef8f87d7a85c4905b0aa25c1415caedd" Name="Diagram1" ZoomLevel="77">
-        <EntityTypeShape EntityType="db_CatastrosModel.tb_Generales_Accesos" PointX="0.5" PointY="7.75" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_CatastrosModel.tb_Generales_Accesos" PointX="0.5" PointY="7.625" Width="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="db_CatastrosModel.tb_Generales_Accesos_Usuarios" PointX="2.125" PointY="2" Width="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="db_CatastrosModel.tb_Generales_Usuarios" Width="1.5" PointX="5.375" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="db_CatastrosModel.tb_Generales_Usuarios_Contraseñas" Width="1.5" PointX="3.75" PointY="0.5" IsExpanded="true" />
@@ -17,15 +17,15 @@
         <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Catalogo_Tipos_Terrenos" Width="1.5" PointX="8.625" PointY="0.5" />
         <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Catalogo_Usos_Terrenos_Urbanos" PointX="2.125" PointY="0.5" Width="1.5" />
         <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Fichas" Width="1.5" PointX="8.625" PointY="2" />
-        <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Fichas_Generales" Width="1.5" PointX="10.25" PointY="0.5" />
         <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Catalogo_Municipios" Width="1.5" PointX="7" PointY="4.125" />
         <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Catalogo_Poblaciones" Width="1.5" PointX="2.125" PointY="6.25" />
         <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Fichas_Construcciones" Width="1.5" PointX="7" PointY="5.625" />
         <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Fichas_Demeritos" Width="1.5" PointX="2.125" PointY="8.125" />
-        <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Fichas_Domicilios_Notificaciones" Width="1.5" PointX="8.625" PointY="4.25" />
-        <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Fichas_Propietarios" Width="1.5" PointX="10.25" PointY="6" />
+        <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Fichas_Propietarios" Width="1.5" PointX="10.25" PointY="6.5" />
         <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Fichas_Terrenos" Width="1.5" PointX="3.75" PointY="5.25" />
         <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Solicitudes_Notarias" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Fichas_Generales" Width="1.5" PointX="10.25" PointY="0.5" />
+        <EntityTypeShape EntityType="db_CatastrosModel.Catastro_Fichas_Domicilios_Notificaciones" Width="1.5" PointX="8.625" PointY="4.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -302,3 +302,43 @@
    en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
    en System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
    en Login.btnAcceso_Click(Object sender, EventArgs e) en c:\Users\User\Desktop\Proyectos\Catastro\Catastro_Admin\Login.aspx.cs:línea 45
+
+31/1/2017 8:45. Subproceso anulado.   en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.AbortCurrentThread()
+   en System.Web.HttpResponse.End()
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   en Login.btnAcceso_Click(Object sender, EventArgs e) en c:\Users\User\Desktop\Proyectos\Catastro\Catastro_Admin\Login.aspx.cs:línea 45
+
+31/1/2017 9:07. Subproceso anulado.   en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.AbortCurrentThread()
+   en System.Web.HttpResponse.End()
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   en Login.btnAcceso_Click(Object sender, EventArgs e) en c:\Users\User\Desktop\Proyectos\Catastro\Catastro_Admin\Login.aspx.cs:línea 45
+
+31/1/2017 9:37. Subproceso anulado.   en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.AbortCurrentThread()
+   en System.Web.HttpResponse.End()
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   en Login.btnAcceso_Click(Object sender, EventArgs e) en c:\Users\User\Desktop\Proyectos\Catastro\Catastro_Admin\Login.aspx.cs:línea 45
+
+31/1/2017 10:18. Subproceso anulado.   en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.AbortCurrentThread()
+   en System.Web.HttpResponse.End()
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   en Login.btnAcceso_Click(Object sender, EventArgs e) en c:\Users\User\Desktop\Proyectos\Catastro\Catastro_Admin\Login.aspx.cs:línea 45
+
+31/1/2017 10:28. Subproceso anulado.   en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.AbortCurrentThread()
+   en System.Web.HttpResponse.End()
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   en Login.btnAcceso_Click(Object sender, EventArgs e) en c:\Users\User\Desktop\Proyectos\Catastro\Catastro_Admin\Login.aspx.cs:línea 45

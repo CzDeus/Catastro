@@ -60,6 +60,7 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
             case "ru":
                 //Encabezado_Label.Text = "MANIFESTACION DE RECTIFICACION DE DATOS CATASTRALES PREDIO URBANO";
                 Operacion_Sub_Fus.Visible = false;
+                Operacion_Sub_Fus_2.Visible = false;
                 bloque_11.Visible = false;
                 Div11.Visible = false;
                 bloque_12.Visible = false;
@@ -72,6 +73,7 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
             case "rr":
                 //Titulo_Manifiesto.Text = "MANIFESTACION DE RECTIFICACION DE DATOS CATASTRALES PREDIO RURAL";
                 Operacion_Sub_Fus.Visible = false;
+                Operacion_Sub_Fus_2.Visible = false;
                 bloque_1.Visible = false;
                 bloque_2.Visible = false;
                 bloque_13.Visible = false;
@@ -85,6 +87,7 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
                 //Titulo_Manifiesto.Text = "MANIFESTACION DE TRASLACION DE DOMINIO DE PREDIO URBANO";
                 clave_catastral_lotes_fusionar.Visible = false;
                 Operacion_Sub_Fus.Visible = false;
+                Operacion_Sub_Fus_2.Visible = false;
                 bloque_11.Visible = false;
                 Div11.Visible = false;
                 bloque_12.Visible = false;
@@ -99,6 +102,7 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
                 //Titulo_Manifiesto.Text = "MANIFESTACION DE TRASLACION DE DOMINIO DE PREDIO RURAL";
                 clave_catastral_lotes_fusionar.Visible = false;
                 Operacion_Sub_Fus.Visible = false;
+                Operacion_Sub_Fus_2.Visible = false;
                 bloque_1.Visible = false;
                 bloque_2.Visible = false;
                 bloque_13.Visible = false;
@@ -278,11 +282,20 @@ public partial class Forms_Compar_Manifiestos : System.Web.UI.Page
         Calle_Info_Catastro_TextBox.Text = ubicacion.nombre_Calle;
         Num_Ofi_Info_Catastro_TextBox.Text = ubicacion.numero_Ubicacion_Predio;
         Colonia_Info_Catastro_TextBox.Text = ubicacion.nombre_Colonia;
+        Num_Lote_Info_Catastro_TextBox.Text = ubicacion.numero_lote.ToString();
+        Num_Mza_Info_Catastro_TextBox.Text = ubicacion.numero_Manzana;
 
+        Volumen_Info_Catastro_TextBox.Text = ubicacion.volumen;
+        Numero_Doc_Info_Catastro_TextBox.Text = ubicacion.numero_Medidor;
+        
         var dom_Notificacion = contexto.sp_Domicilio_Notificacion_Info_Predios_Notarias(ubicacion.Ficha).First();
         Calle_Dom_Not_Catastro_TextBox.Text = dom_Notificacion.nombre_Calle;
         Numero_Info_Catastro_TextBox.Text = dom_Notificacion.numero_Oficial;
         Colonia_Dom_Not_Info_Catastro_TextBox.Text = dom_Notificacion.nombre_Colonia;
+        Poblacion_Dom_Not_Info_Catastro_TextBox.Text = dom_Notificacion.poblacion;
+        Estado_Dom_Not_Info_Catastro_TextBox.Text = dom_Notificacion.estado;
+        Cp_Dom_Not_Info_Catastro_TextBox.Text = dom_Notificacion.codigo_postal;
+        Rfc_Dom_Not_Info_Catastro_TextBox.Text = dom_Notificacion.rfc;
 
 
 

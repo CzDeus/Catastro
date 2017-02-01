@@ -50,7 +50,7 @@ public partial class Forms_Solicitudes_Notaria : System.Web.UI.Page
             switch (tipo_tramite)
             {
                 case 1:
-                    Response.Redirect("Manifestacion.aspx?t=ru&e="+ Estatus_HiddenField.Value); //2
+                    Response.Redirect("Manifestacion.aspx?t=ru&e=" + Estatus_HiddenField.Value); //2
                     break;
                 case 5:
                     Response.Redirect("Manifestacion.aspx?t=rr&e=" + Estatus_HiddenField.Value); //2
@@ -100,8 +100,6 @@ public partial class Forms_Solicitudes_Notaria : System.Web.UI.Page
             else if (Estado_Registro_Verificador.SelectedValue == "Enviados")
             {
                 Estatus_HiddenField.Value = "2";
-
-
             }
             else if (Estado_Registro_Verificador.SelectedValue == "Validados")
             {
@@ -113,13 +111,23 @@ public partial class Forms_Solicitudes_Notaria : System.Web.UI.Page
 
             }
 
-            if (Estatus_HiddenField.Value != "2")
+            if (Estatus_HiddenField.Value == "1")
             {
+                Tramites_GridView.Columns[4].Visible = true;
                 Tramites_GridView.Columns[5].Visible = true;
+                Tramites_GridView.Columns[6].Visible = false;
             }
-            else
+            else if (Estatus_HiddenField.Value == "2")
             {
+                Tramites_GridView.Columns[4].Visible = true;
                 Tramites_GridView.Columns[5].Visible = false;
+                Tramites_GridView.Columns[6].Visible = false;
+            }
+            else if (Estatus_HiddenField.Value == "3")
+            {
+                Tramites_GridView.Columns[4].Visible = false;
+                Tramites_GridView.Columns[5].Visible = false;
+                Tramites_GridView.Columns[6].Visible = true;
             }
 
             Tramites_GridView.DataBind();
